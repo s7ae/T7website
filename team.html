@@ -1,0 +1,1329 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>团队 · s7ae 网络科技工作室</title>
+    <meta name="description" content="s7ae 网络科技工作室 — 专注软硬件定制开发" />
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/8.4.5/swiper-bundle.min.css">
+    <!-- 艺术字体引入 -->
+    <link href="https://fonts.googleapis.com/css2?family=Audiowide&family=Monoton&family=Orbitron:wght@400;500;700;900&display=swap" rel="stylesheet">
+    <style>
+        /* 高级动效系统 - Evolution风格 */
+        :root {
+            --primary-color: #6366f1;
+            --secondary-color: #a855f7;
+            --accent-color: #ec4899;
+            --dark-bg: #0a0a1a;
+            --glass-bg: rgba(255, 255, 255, 0.05);
+            --glass-border: rgba(255, 255, 255, 0.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #0a0a1a 0%, #1a1a3a 50%, #0a0a1a 100%);
+            color: #ffffff;
+            overflow-x: hidden;
+            min-height: 100vh;
+        }
+
+        #canvas-background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 9998; /* 将canvas置于intro-animation下方但在主内容上方 */
+            /* 丰富背景效果 */
+            background: radial-gradient(circle at 20% 50%, rgba(74, 74, 255, 0.1) 0%, transparent 50%),
+                        radial-gradient(circle at 80% 30%, rgba(255, 74, 153, 0.1) 0%, transparent 50%),
+                        linear-gradient(135deg, #0a0a1a 0%, #1a1a3a 50%, #0a0a1a 100%);
+            opacity: 0; /* 默认隐藏，动画后显示 */
+            transition: opacity 1s ease-in-out;
+        }
+        
+        #canvas-background.fade-in {
+            opacity: 1;
+        }
+
+        /* 高级导航栏效果 */
+        .nav-advanced {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 20px 0;
+            background: rgba(11, 15, 26, 0.8);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+            z-index: 1000;
+        }
+        
+        .nav-advanced.scrolled {
+            padding: 15px 0;
+            background: rgba(11, 15, 26, 0.95);
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .nav-advanced .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .logo {
+            background-size: contain;
+            display: inline-block;
+        }
+        
+        .logo a {
+            color: white;
+            font-size: 28px;
+            font-weight: 400;
+            font-family: 'Audiowide', cursive;
+            text-decoration: none;
+            /* 苹果风格玻璃效果 */
+            text-shadow: 0 0 10px rgba(0, 245, 255, 0.9),
+                         0 0 20px rgba(0, 245, 255, 0.7);
+            letter-spacing: 2px;
+            padding: 10px 15px;
+            border-radius: 12px;
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.04);
+            backdrop-filter: blur(30px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.03);
+            transition: all 0.2s ease;
+        }
+        .logo a:hover {
+            background: rgba(255, 255, 255, 0.06);
+            border-color: rgba(255, 255, 255, 0.08);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+        }
+        .menu {
+            display: flex;
+        }
+        .menu ul {
+            display: flex;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+        .menu ul li {
+            margin-left: 30px;
+        }
+        .menu ul li a {
+            color: white;
+            text-decoration: none;
+            font-size: 16px;
+            transition: all 0.2s ease;
+            padding: 10px 20px;
+            border-radius: 12px;
+            background: rgba(255, 255, 255, 0.04);
+            backdrop-filter: blur(30px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            display: inline-block;
+            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.03);
+        }
+        .menu ul li a:hover {
+            background: rgba(255, 255, 255, 0.06);
+            border-color: rgba(255, 255, 255, 0.08);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+            transform: translateY(-1px);
+        }
+
+
+
+        /* 高级滚动条 */
+        .scrollbar-advanced::-webkit-scrollbar {
+          width: 8px;
+        }
+        
+        .scrollbar-advanced::-webkit-scrollbar-track {
+          background: rgba(11, 15, 26, 0.1);
+        }
+        
+        .scrollbar-advanced::-webkit-scrollbar-thumb {
+          background: linear-gradient(45deg, #7c5cff, #5fffc5);
+          border-radius: 4px;
+        }
+        
+        .scrollbar-advanced::-webkit-scrollbar-thumb:hover {
+          background: linear-gradient(45deg, #5fffc5, #7c5cff);
+        }
+
+        /* 滚动指示器 */
+        .scroll-indicator {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--primary-color), var(--secondary-color), var(--accent-color));
+            z-index: 1001;
+            transition: width 0.2s ease;
+        }
+
+        /* 磁性文本效果 */
+        .magnetic-text {
+            transition: transform 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        /* 高级文本效果 */
+        .text-advanced {
+            background: linear-gradient(45deg, #ffffff, #a8a8b3);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+        }
+
+        .text-hover-glow {
+            transition: all 0.3s ease;
+        }
+
+        .text-hover-glow:hover {
+            text-shadow: 0 0 15px rgba(255, 255, 255, 0.5);
+            transform: translateY(-2px);
+        }
+
+        /* 高级卡片效果 */
+        .card-advanced {
+            background: var(--glass-bg);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-radius: 16px;
+            border: 1px solid var(--glass-border);
+            padding: 30px;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+            overflow: hidden;
+            position: relative;
+        }
+
+        .card-advanced::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(99, 102, 241, 0.1), rgba(168, 85, 247, 0.1));
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .card-advanced:hover::before {
+            opacity: 1;
+        }
+
+        .card-advanced:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        /* 悬停倾斜效果 */
+        .hover-tilt {
+            transition: transform 0.3s ease;
+            transform-style: preserve-3d;
+        }
+
+        /* 波纹动画 */
+        @keyframes ripple {
+            0% {
+                transform: scale(0);
+                opacity: 1;
+            }
+            100% {
+                transform: scale(4);
+                opacity: 0;
+            }
+        }
+
+        .ripple {
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.3);
+            transform: scale(0);
+            animation: ripple 0.6s ease-out;
+            pointer-events: none;
+        }
+
+        /* 高级按钮 */
+        .btn-advanced {
+            background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+            border: none;
+            color: white;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .btn-advanced:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(99, 102, 241, 0.3);
+        }
+
+        /* 滚动动画 */
+        .scroll-animate {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        .scroll-animate.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* 团队页面特定样式 */
+        #canvas-background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            background: linear-gradient(135deg, #0a0a1a 0%, #1a1a3a 50%, #0a0a1a 100%);
+        }
+
+        .container {
+            position: relative;
+            z-index: 1;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .team-hero {
+            padding: 150px 0 80px;
+            text-align: center;
+        }
+
+        .team-hero h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 20px;
+            background: linear-gradient(45deg, var(--primary-color), var(--secondary-color), var(--accent-color));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-shadow: 0 0 30px rgba(99, 102, 241, 0.3);
+        }
+
+        .team-hero p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto 40px;
+            opacity: 0.8;
+        }
+
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 30px;
+            margin-top: 60px;
+            margin-bottom: 80px;
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.04);
+            border-radius: 16px;
+            padding: 30px;
+            backdrop-filter: blur(30px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.03);
+            transition: all 0.2s ease;
+            position: relative;
+            text-align: center;
+        }
+
+        .card:hover {
+            background: rgba(255, 255, 255, 0.06);
+            border-color: rgba(255, 255, 255, 0.08);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+            transform: translateY(-2px);
+        }
+
+        .card__avatar {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 20px;
+            position: relative;
+        }
+
+        .card__avatar-inner {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, rgba(138, 159, 255, 0.3), rgba(255, 255, 255, 0.1));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 48px;
+            font-weight: bold;
+            border: 3px solid rgba(255, 255, 255, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card__avatar-inner img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 50%;
+            display: block;
+        }
+
+        .card h3 {
+            margin: 0 0 8px 0;
+            font-size: 20px;
+        }
+
+        .card__title {
+            color: #8a9fff;
+            font-size: 16px;
+            margin-bottom: 16px;
+            font-weight: 500;
+        }
+
+        .card p {
+            margin: 0 0 20px 0;
+            opacity: 0.9;
+            line-height: 1.6;
+            font-size: 14px;
+        }
+
+        .tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            justify-content: center;
+        }
+
+        .tag {
+            background: rgba(138, 159, 255, 0.2);
+            padding: 4px 10px;
+            border-radius: 16px;
+            font-size: 12px;
+            color: #8a9fff;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .tag:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-2px);
+        }
+
+        .footer {
+            text-align: center;
+            padding: 40px 0;
+            opacity: 0.6;
+            font-size: 0.9rem;
+        }
+
+        /* 响应式设计 */
+        @media (max-width: 768px) {
+            .team-hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .team-grid {
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+                gap: 20px;
+            }
+            
+            .menu {
+                display: none;
+            }
+        }
+        
+        /* Header样式 - 与index.html保持一致 */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 30px 0;
+            position: relative;
+            z-index: 10;
+        }
+        .logo {
+            background-size: contain;
+            display: inline-block;
+        }
+        
+        .logo a {
+            color: white;
+            font-size: 28px;
+            font-weight: 400;
+            font-family: 'Audiowide', cursive;
+            text-decoration: none;
+            /* 苹果风格玻璃效果 */
+            text-shadow: 0 0 10px rgba(0, 245, 255, 0.9),
+                         0 0 20px rgba(0, 245, 255, 0.7);
+            letter-spacing: 2px;
+            padding: 10px 15px;
+            border-radius: 12px;
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.04);
+            backdrop-filter: blur(30px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.03);
+            transition: all 0.2s ease;
+        }
+        .logo a:hover {
+            background: rgba(255, 255, 255, 0.06);
+            border-color: rgba(255, 255, 255, 0.08);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+        }
+        .menu ul {
+            display: flex;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+        .menu ul li {
+            margin-left: 30px;
+        }
+        .menu ul li a {
+            color: white;
+            text-decoration: none;
+            font-size: 16px;
+            transition: all 0.2s ease;
+            padding: 10px 20px;
+            border-radius: 12px;
+            background: rgba(255, 255, 255, 0.04);
+            backdrop-filter: blur(30px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            display: inline-block;
+            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.03);
+        }
+        .menu ul li a:hover {
+            background: rgba(255, 255, 255, 0.06);
+            border-color: rgba(255, 255, 255, 0.08);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+            transform: translateY(-1px);
+        }
+    </style>
+</head>
+<body class="scrollbar-custom scrollbar-advanced">
+    <!-- 开场动画 -->
+    <div class="intro-animation">
+        <div class="intro-lines" id="intro-lines"></div>
+        <h1 class="intro-text">s7ae</h1>
+    </div>
+    
+    <canvas id="canvas-background"></canvas>
+    <div class="container">
+        <header class="navbar-scrolled nav-advanced">
+        <div class="logo magnetic-hover">
+            <a href="index.html" class="text-hover-glow text-advanced">s7ae</a>
+        </div>
+        <div class="menu">
+            <ul>
+                <li><a href="index.html" class="magnetic-hover text-hover-glow text-advanced">首页</a></li>
+                <li><a href="projects.html" class="magnetic-hover text-hover-glow text-advanced">项目</a></li>
+                <li><a href="team.html" class="magnetic-hover text-hover-glow text-advanced">鸣谢</a></li>
+                <li><a href="contact.html" class="magnetic-hover text-hover-glow text-advanced">联系我们</a></li>
+            </ul>
+        </div>
+    </header>
+        
+        <section class="hero scroll-animate">
+            <div class="hero__left">
+                <h1 class="magnetic-text text-advanced">鸣谢名单</h1>
+                <div class="lead text-advanced">都是我的好朋友们~</div>
+            </div>
+        </section>
+        
+        <section>
+            <div class="team-grid">
+                <div class="card card-advanced hover-tilt" style="background: rgba(255, 192, 203, 0.1); border-color: rgba(255, 192, 203, 0.2);">
+                    <div class="card__avatar" style="position: relative;">
+                        <div class="card__avatar-inner">
+                            <img src="assets/TX/invc.jpg" alt="invc头像" />
+                        </div>
+                        <img src="assets/TX/invv.webp" alt="动态头像框" style="position: absolute; top: -15px; left: -30px; width: 120%; height: 120%; object-fit: contain; pointer-events: none; background: transparent;" />
+                    </div>
+                    <h3 class="text-advanced">宫崎柚子</h3>
+                    <div class="card__title text-advanced">主人 · 命令下发</div>
+                    <p class="text-advanced">负责控制创始人</p>
+                    <div class="tags">
+
+                    </div>
+                </div>
+
+                <div class="card card-advanced hover-tilt" style="background: rgba(173, 216, 230, 0.1); border-color: rgba(173, 216, 230, 0.2);">
+                    <div class="card__avatar" style="position: relative;">
+                        <div class="card__avatar-inner">
+                            <img src="assets/TX/s7ae.png" alt="s7ae头像" />
+                        </div>
+                        <img src="assets/TX/s7aeinv.webp" alt="动态头像框" style="position: absolute; top: -15px; left: -30px; width: 120%; height: 120%; object-fit: contain; pointer-events: none; background: transparent;" />
+                    </div>
+                    <h3 class="text-advanced">s7ae</h3>
+                    <div class="card__title text-advanced">创始人 · 全栈开发</div>
+                    <p class="text-advanced">拥有丰富的全栈开发经验，擅长复杂系统架构设计和性能优化，吹牛逼技术也是T1级别：）</p>
+                    <div class="tags">
+                        <span class="tag text-hover-glow">架构设计</span>
+                        <span class="tag text-hover-glow">性能优化</span>
+                        <span class="tag text-hover-glow">思维设计</span>
+                    </div>
+                </div>
+                
+                <div class="card card-advanced hover-tilt">
+                    <div class="card__avatar">
+                        <div class="card__avatar-inner">
+                            <img src="assets/TX/en7.jpg" alt="En7p头像" />
+                        </div>
+                    </div>
+                    <h3 class="text-advanced">En7p.</h3>
+                    <div class="card__title text-advanced">打号开户 · 瞎骂狗叫</div>
+                    <div class="card__title text-advanced" style="color: red;">
+                        恶俗雅士
+                    </div>
+                    <p class="text-advanced">精通竞争对手亲爹亲妈的一千三百种死法</p>
+                    <div class="tags">
+                        <span class="tag text-hover-glow">开团狗叫</span>
+                        <span class="tag text-hover-glow">开户害人</span>
+                        <span class="tag text-hover-glow">邮寄花圈</span>
+                    </div>
+                </div>
+                
+                <div class="card card-advanced hover-tilt">
+                    <div class="card__avatar">
+                        <div class="card__avatar-inner">
+                            <img src="assets/TX/dark.png" alt="dark头像" />
+                        </div>
+                    </div>
+                    <h3 class="text-advanced">dark</h3>
+                    <div class="card__title text-advanced">设计师 · 开发者</div>
+                    <p class="text-advanced">项目主要开发者,负责优化和实现客户的一切需求</p>
+                    <div class="tags">
+                        <span class="tag text-hover-glow">全栈开发</span>
+                        <span class="tag text-hover-glow">项目构建</span>
+                        <span class="tag text-hover-glow">界面设计</span>
+                    </div>
+                </div>
+                
+                <div class="card card-advanced hover-tilt">
+                    <div class="card__avatar">
+                        <div class="card__avatar-inner">
+                            <img src="assets/TX/沉船.jpg" alt="沉船头像" />
+                        </div>
+                    </div>
+                    <h3 class="text-advanced">沉船</h3>
+                    <div class="card__title text-advanced">前端开发</div>
+                    <p class="text-advanced">项目主要开发者,负责帮助客户构思功能及主要代码编写</p>
+                    <div class="tags">
+                        <span class="tag text-hover-glow">前端开发</span>
+                        <span class="tag text-hover-glow">团队管理</span>
+                        <span class="tag text-hover-glow">交互实现</span>
+                    </div>
+                </div>
+
+                <div class="card card-advanced hover-tilt" style="position: relative;">
+                    <div class="card__avatar" style="position: relative;">
+                        <div class="card__avatar-inner" style="background-color: black;">
+                            <img src="assets/Hysteria/butterfly.webp" alt="enQ" style="filter: sepia(1) hue-rotate(120deg) saturate(0.8) brightness(1.1); background-color: transparent;" />
+                        </div>
+                        <div style="position: absolute; top: -40px; right: -40px; width: 70px; height: 70px; overflow: visible; background-color: transparent; z-index: 1000; transform: rotate(15deg); box-shadow: 0 4px 8px rgba(0,0,0,0.3);">
+                            <img src="assets/Hysteria/enqDev.webp" alt="enQ Dev" style="width: 100%; height: 100%; object-fit: contain; background-color: transparent;" />
+                        </div>
+                    </div>
+                    <h3 class="text-advanced">enQ</h3>
+                    <a href="https://discord.gg/eC82SmcF9E" target="_blank" class="card__title text-hover-glow text-advanced">Hysteria.one</a>
+                    <p class="text-advanced">Make people happy and they will not forget you</p>
+                    <div class="tags">
+                        <span class="tag text-hover-glow">A top code developer</span>
+                        <span class="tag text-hover-glow">Art-level works</span>
+                        <span class="tag text-hover-glow">I wish you happy every day:)</span>
+                    </div>
+                </div>
+
+                <div class="card card-advanced hover-tilt">
+                    <div class="card__avatar">
+                        <div class="card__avatar-inner">
+                            <img src="assets/TX/gff.jpg" alt="gff头像" />
+                        </div>
+                    </div>
+                    <h3 class="text-advanced">顾芳芳</h3>
+                    <div class="card__title text-advanced">后勤储备</div>
+                    <p class="text-advanced">项目预算拨款及负责项目善后工作</p>
+                    <div class="tags">
+                        <span class="tag text-hover-glow">项目投资</span>
+                        <span class="tag text-hover-glow">项目善后</span>
+                        <span class="tag text-hover-glow">意见收集</span>
+                    </div>
+                </div>
+
+                <div class="card card-advanced hover-tilt">
+                    <div class="card__avatar">
+                        <div class="card__avatar-inner">
+                            <img src="assets/TX/kaktus.png" alt="kaktus头像" />
+                            
+                        </div>
+                    </div>
+                    <h3 class="text-advanced">kaktus</h3>
+                    <div class="card__title text-advanced">Varg</div>
+                    <p class="text-advanced">负责项目开发过程中各种疑难问题的解决</p>
+                    <div class="tags">
+                        <span class="tag text-hover-glow">项目监制</span>
+                        <span class="tag text-hover-glow">问题协助</span>
+                        <span class="tag text-hover-glow">保护思路</span>
+                        <a href="https://varglua.top/" target="_blank" class="tag text-hover-glow">为何不尝试一下Varg呢？</a>
+                    </div>
+                </div>
+
+                <div class="card card-advanced hover-tilt">
+                    <div class="card__avatar">
+                        <div class="card__avatar-inner">
+                            <img src="assets/TX/1star.jpg" alt="一颗星头像" />
+                        </div>
+                    </div>
+                    <h3 class="text-advanced">一颗星</h3>
+                    <div class="card__title text-advanced">1star</div>
+                    <p class="text-advanced">项目主要参与者</p>
+                    <div class="tags">
+                        <span class="tag text-hover-glow">代码监制</span>
+                        <span class="tag text-hover-glow">性能测试</span>
+                        <span class="tag text-hover-glow">细节优化</span>
+                        <span class="tag text-hover-glow">get good get Universe</span>
+                        <span class="tag text-hover-glow">get good get Meteor</span>
+                    </div>
+                </div>
+
+                <div class="card card-advanced hover-tilt">
+                    <div class="card__avatar">
+                        <div class="card__avatar-inner">
+                            <img src="assets/TX/dog.jpg" alt="刀割头像" />
+                        </div>
+                    </div>
+                    <h3 class="text-advanced">刀割</h3>
+                    <div class="card__title text-advanced">小岛</div>
+                    <p class="text-advanced">负责生出来一些鬼点子</p>
+                    <div class="tags">
+                        <span class="tag text-hover-glow">喜欢导管</span>
+                        <span class="tag text-hover-glow">喜欢摆烂</span>
+                        <span class="tag text-hover-glow">喜欢看片</span>
+                        <a href="https://iq1155.icu/" target="_blank" class="tag text-hover-glow">小岛1155服务器</a>
+                    </div>
+                </div>
+
+                <div class="card card-advanced hover-tilt">
+                    <div class="card__avatar">
+                        <div class="card__avatar-inner">
+                            <img src="https://cdn.thinktea.cn/assets/saki.jpg" alt="Saki头像" />
+                        </div>
+                    </div>
+                    <h3 class="text-advanced">Saki</h3>
+                    <div class="card__title text-advanced">思茶网络科技</div>
+                    <p class="text-advanced">思茶科技集团有限公司负责人</p>
+                    <div class="tags">
+                        <span class="tag text-hover-glow">合作伙伴</span>
+                        <a href="https://sicha.ltd" target="_blank" class="tag text-hover-glow">思茶网络科技有限公司</a>
+                    </div>
+                </div>
+
+                <div class="card card-advanced hover-tilt">
+                    <div class="card__avatar">
+                        <div class="card__avatar-inner">
+                            <img src="assets/TX/CX.jpg" alt="程曦头像" />
+                        </div>
+                    </div>
+                    <h3 class="text-advanced">程曦</h3>
+                    <div class="card__title text-advanced">一个很聪明的人类</div>
+                    <p class="text-advanced">负责睡觉</p>
+                    <div class="tags">
+                        <span class="tag text-hover-glow">睡觉</span>
+                        <span class="tag">睡大觉</span>
+                        <span class="tag">睡好觉</span>
+                    </div>
+                </div>
+
+                <div class="card card-advanced hover-tilt">
+                    <div class="card__avatar">
+                        <div class="card__avatar-inner">
+                            <img src="assets/TX/water.jpg" alt="hzm头像" />
+                        </div>
+                    </div>
+                    <h3 class="text-advanced">Water</h3>
+                    <div class="card__title text-advanced">一个bugnami</div>
+                    <p class="text-advanced">负责玩</p>
+                    <div class="tags">
+                        <span class="tag text-hover-glow">8</span>
+                        <span class="tag text-hover-glow">2</span>
+                        <span class="tag text-hover-glow">l</span>
+                        <span class="tag text-hover-glow">a</span>
+                        <span class="tag text-hover-glow">b</span>
+                    </div>
+                </div>
+
+                <div class="card card-advanced hover-tilt">
+                    <div class="card__avatar">
+                        <div class="card__avatar-inner">
+                            <img src="assets/TX/HYH.jpg" alt="hyh头像" />
+                        </div>
+                    </div>
+                    <h3 class="text-advanced">lightskin?☔️</h3>
+                    <div class="card__title text-advanced">道天仙帝</div>
+                    <p class="text-advanced">本帝道天，曾以一剑断轮回，曾在混沌立秩序。修的是太上忘情道，执的是因果权柄。弹指间葬下过纪元，睁眼时nopen开清，目光垂落，万物寂然。见我如见道。</p>
+                    <div class="tags">
+                        <a href="https://neverlose.cc/market/item?id=n0jkHQ" target="_blank" class="tag text-hover-glow">lamo.cc</a>
+                        <a href="https://neverlose.cc/market/item?id=BT6F64" target="_blank" class="tag text-hover-glow">666dt</a>
+                        <a href="https://neverlose.cc/market/item?id=pAMgwp" target="_blank" class="tag text-hover-glow">666da</a>
+                    </div>
+                </div>
+
+                <div class="card card-advanced hover-tilt">
+                    <div class="card__avatar">
+                        <div class="card__avatar-inner">
+                            <img src="assets/TX/candy.jpg" alt="candy头像" />
+                        </div>
+                    </div>
+                    <h3 class="text-advanced">Candy</h3>
+                    <div class="card__title text-advanced">虎牙</div>
+                    <p class="text-advanced">三天开服两头跑路</p>
+                    <div class="tags">
+                        <span class="tag text-hover-glow">总想开服但是资金不够</span>
+                        <span class="tag text-hover-glow">HVH极少数不圈钱的善良比</span>
+                    </div>
+                </div>
+
+                <div id="dotmemory-card" class="card card-advanced hover-tilt">
+                    <div class="card__avatar">
+                        <div class="card__avatar-inner">
+                            <img src="assets/TX/wxh.jpg" alt="wxh头像" />
+                        </div>
+                    </div>
+                    <h3 class="text-advanced">Dotmemory</h3>
+                    <div class="card__title text-advanced">序号为0</div>
+                    <p class="text-advanced">那你就当我在乎吧</p>
+                    <div class="tags">
+                        <span class="tag text-hover-glow">LC</span>
+                        <span class="tag text-hover-glow">LC</span>
+                        <span class="tag text-hover-glow">LC</span>
+                        <span class="tag text-hover-glow">LC</span>
+                        <span class="tag text-hover-glow">LC</span>
+                        <span class="tag text-hover-glow">LC</span>
+                        <span class="tag text-hover-glow">LC</span>
+                        <span class="tag text-hover-glow">LC</span>
+                        <span class="tag text-hover-glow">LC</span>
+                        <span class="tag text-hover-glow">LC</span>
+                        <span class="tag text-hover-glow">LC</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- 音频元素 -->
+        <audio id="lc-audio" preload="auto">
+            <source src="assets/Sound/LC.WAV" type="audio/wav">
+            您的浏览器不支持音频元素
+        </audio>
+        
+        <div class="footer">© 2025 s7ae 网络科技工作室</div>
+    </div>
+
+    <script src="liquidglass.js"></script>
+    <script>
+        // 开场动画JavaScript - 添加从子页面返回时跳过动画的功能
+        document.addEventListener('DOMContentLoaded', function() {
+            // 检查是否是从子页面返回
+            const skipAnimation = localStorage.getItem('skipIntroAnimation');
+            
+            // 如果需要跳过动画
+            if (skipAnimation === 'true') {
+                // 立即隐藏intro动画
+                const introAnimation = document.querySelector('.intro-animation');
+                introAnimation.style.opacity = '0';
+                introAnimation.style.pointerEvents = 'none';
+                
+                // 立即显示canvas背景和主内容
+                const canvas = document.getElementById('canvas-background');
+                canvas.classList.add('fade-in');
+                canvas.style.zIndex = '-1';
+                
+                document.querySelector('.container').classList.add('fade-in');
+                
+                // 清除标志，下次直接访问时仍显示动画
+                localStorage.removeItem('skipIntroAnimation');
+                
+                // 不执行后续动画代码
+                return;
+            }
+            
+            // 创建线条动画
+            const linesContainer = document.getElementById('intro-lines');
+            const lineCount = 15;
+            
+            // 创建随机线条
+            for (let i = 0; i < lineCount; i++) {
+                const line = document.createElement('div');
+                line.className = 'intro-line';
+                
+                // 随机位置和方向
+                const isHorizontal = Math.random() > 0.5;
+                const delay = Math.random() * 0.5;
+                
+                if (isHorizontal) {
+                    line.style.top = `${Math.random() * 100}%`;
+                    line.style.left = 0;
+                    line.style.height = '1px';
+                    line.style.transform = 'rotate(0deg)';
+                } else {
+                    line.style.top = 0;
+                    line.style.left = `${Math.random() * 100}%`;
+                    line.style.width = '1px';
+                    line.style.height = '0%';
+                    line.style.transform = 'rotate(90deg)';
+                }
+                
+                line.style.animation = isHorizontal 
+                    ? `drawHorizontal 0.8s ease-in-out ${delay}s forwards`
+                    : `drawVertical 0.8s ease-in-out ${delay}s forwards`;
+                
+                linesContainer.appendChild(line);
+            }
+            
+            // 添加线条动画样式
+            const style = document.createElement('style');
+            style.textContent = `
+                @keyframes drawHorizontal {
+                    0% { width: 0%; }
+                    100% { width: 100%; }
+                }
+                
+                @keyframes drawVertical {
+                    0% { height: 0%; }
+                    100% { height: 100%; }
+                }
+                
+                @keyframes fadeOut {
+                    0% { opacity: 1; }
+                    100% { opacity: 0; pointer-events: none; }
+                }
+                
+                /* 线条淡出动画 */
+                @keyframes fadeOutLines {
+                    0% { opacity: 1; transform: scale(1); }
+                    50% { opacity: 0.5; transform: scale(1.05); }
+                    100% { opacity: 0; transform: scale(1); }
+                }
+            `;
+            document.head.appendChild(style);
+            
+            // 启动粒子背景，但保持隐藏
+            setTimeout(() => {
+                // 提前初始化canvas，让粒子动画准备就绪
+                const canvas = document.getElementById('canvas-background');
+                if (canvas.getContext) {
+                    // 粒子背景已经在页面加载时初始化，这里只是确保它准备就绪
+                }
+            }, 1000);
+            
+            // 动画结束后平滑过渡到粒子背景
+            setTimeout(function() {
+                // 先让线条元素平滑淡出
+                const lines = document.querySelectorAll('.intro-line');
+                lines.forEach((line, index) => {
+                    setTimeout(() => {
+                        line.style.animation = 'fadeOutLines 0.8s ease forwards';
+                    }, index * 50); // 错开线条淡出时间，创造流动感
+                });
+                
+                // 让s7ae文本缩小淡出
+                const introText = document.querySelector('.intro-text');
+                introText.style.animation = 'fadeOutLines 1s ease forwards';
+                
+                // 同时淡入粒子背景
+                setTimeout(() => {
+                    document.getElementById('canvas-background').classList.add('fade-in');
+                }, 300);
+                
+                // 延迟淡出整个intro层并显示主内容
+                setTimeout(function() {
+                    const introAnimation = document.querySelector('.intro-animation');
+                    introAnimation.style.animation = 'fadeOut 0.3s ease forwards';
+                    
+                    // 显示主内容
+                    setTimeout(function() {
+                        document.querySelector('.container').classList.add('fade-in');
+                        // 将canvas置于背景层
+                        document.getElementById('canvas-background').style.zIndex = '-1';
+                    }, 200);
+                }, 500); // 提前开始过渡，以实现平滑衔接
+            }, 1000); // 1秒后开始过渡，加快动画节奏
+        });
+        
+        // 动态背景粒子效果
+        const canvas = document.getElementById('canvas-background');
+        const ctx = canvas.getContext('2d');
+        
+        // 设置canvas尺寸
+        function setCanvasSize() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+        
+        setCanvasSize();
+        window.addEventListener('resize', setCanvasSize);
+        
+        // 粒子类
+        class Particle {
+            constructor() {
+                this.x = Math.random() * canvas.width;
+                this.y = Math.random() * canvas.height;
+                this.size = Math.random() * 3 + 0.5; // 减小粒子大小，更细腻
+                this.speedX = Math.random() * 0.5 - 0.25;
+                this.speedY = Math.random() * 0.5 - 0.25;
+                this.opacity = 0; // 初始透明度为0，用于动画过渡
+                this.targetOpacity = Math.random() * 0.5 + 0.3; // 目标透明度
+                this.opacitySpeed = 0.005; // 透明度变化速度
+                this.color = this.getRandomColor();
+            }
+            
+            getRandomColor() {
+                // 调整颜色以匹配开场动画
+                const colors = [
+                    'rgba(74, 74, 255, 1)',
+                    'rgba(255, 74, 153, 1)',
+                    'rgba(150, 100, 255, 1)',
+                    'rgba(100, 255, 200, 1)'
+                ];
+                return colors[Math.floor(Math.random() * colors.length)];
+            }
+            
+            update() {
+                // 平滑增加透明度，实现粒子渐入效果
+                if (this.opacity < this.targetOpacity) {
+                    this.opacity += this.opacitySpeed;
+                    if (this.opacity > this.targetOpacity) {
+                        this.opacity = this.targetOpacity;
+                    }
+                }
+                
+                this.x += this.speedX;
+                this.y += this.speedY;
+                
+                // 边界检测
+                if (this.x < 0 || this.x > canvas.width) this.speedX *= -1;
+                if (this.y < 0 || this.y > canvas.height) this.speedY *= -1;
+            }
+            
+            draw() {
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                // 使用粒子的透明度
+                const colorWithOpacity = this.color.replace('1)', `${this.opacity})`);
+                ctx.fillStyle = colorWithOpacity;
+                ctx.fill();
+                
+                // 添加粒子辉光效果，增强与线条动画的视觉衔接
+                ctx.shadowBlur = 5;
+                ctx.shadowColor = colorWithOpacity;
+            }
+        }
+        
+        // 创建粒子
+        const particles = [];
+        const particleCount = 120; // 增加粒子数量，使过渡更丰富
+        
+        // 延迟创建粒子，避免页面刚加载时性能问题
+        setTimeout(() => {
+            for (let i = 0; i < particleCount; i++) {
+                // 错开粒子创建时间，使粒子渐入效果更自然
+                setTimeout(() => {
+                    particles.push(new Particle());
+                }, i * 20); // 每个粒子间隔20ms创建
+            }
+        }, 500);
+        
+        // 连接粒子
+        function connectParticles() {
+            for (let a = 0; a < particles.length; a++) {
+                for (let b = a; b < particles.length; b++) {
+                    const dx = particles[a].x - particles[b].x;
+                    const dy = particles[a].y - particles[b].y;
+                    const distance = Math.sqrt(dx * dx + dy * dy);
+                    
+                    if (distance < 100) {
+                        ctx.beginPath();
+                        // 线条透明度与粒子透明度关联
+                        const minOpacity = Math.min(particles[a].opacity, particles[b].opacity);
+                        ctx.strokeStyle = `rgba(150, 150, 255, ${minOpacity * (0.3 - distance/350)})`;
+                        ctx.lineWidth = 0.5;
+                        ctx.moveTo(particles[a].x, particles[a].y);
+                        ctx.lineTo(particles[b].x, particles[b].y);
+                        ctx.stroke();
+                    }
+                }
+            }
+        }
+        
+        // 动画循环
+        function animate() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            
+            // 添加渐变背景效果，与开场动画保持一致
+            const gradient = ctx.createLinearGradient(0, 0, canvas.width, canvas.height);
+            gradient.addColorStop(0, 'rgba(10, 10, 26, 0.9)');
+            gradient.addColorStop(0.5, 'rgba(26, 26, 58, 0.9)');
+            gradient.addColorStop(1, 'rgba(10, 10, 26, 0.9)');
+            ctx.fillStyle = gradient;
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            
+            // 重置阴影效果
+            ctx.shadowBlur = 0;
+            ctx.shadowColor = 'transparent';
+            
+            particles.forEach(particle => {
+                particle.update();
+                particle.draw();
+            });
+            
+            connectParticles();
+            requestAnimationFrame(animate);
+        }
+        
+        animate();
+        
+        // 鼠标交互效果
+        let mouseX, mouseY;
+        
+        window.addEventListener('mousemove', (e) => {
+            mouseX = e.clientX;
+            mouseY = e.clientY;
+        });
+        
+        // 鼠标吸引粒子效果
+        function mouseInteraction() {
+            if (!mouseX || !mouseY) return;
+            
+            particles.forEach(particle => {
+                const dx = particle.x - mouseX;
+                const dy = particle.y - mouseY;
+                const distance = Math.sqrt(dx * dx + dy * dy);
+                
+                if (distance < 150) {
+                    const force = (150 - distance) / 150;
+                    particle.x += dx * force * 0.01;
+                    particle.y += dy * force * 0.01;
+                }
+            });
+            
+            requestAnimationFrame(mouseInteraction);
+        }
+        
+        mouseInteraction();
+
+        // Dotmemory卡片点击播放LC音频并显示提示
+        document.addEventListener('DOMContentLoaded', function() {
+            const dotmemoryCard = document.getElementById('dotmemory-card');
+            const lcAudio = document.getElementById('lc-audio');
+            
+            // 创建提示框样式
+            const toastStyle = `
+                .toast-notification {
+                    position: fixed;
+                    top: 50%;
+                    left: 50%;
+                    transform: translate(-50%, -50%);
+                    background: rgba(0, 0, 0, 0.8);
+                    color: white;
+                    padding: 20px 30px;
+                    border-radius: 10px;
+                    font-size: 24px;
+                    font-weight: bold;
+                    z-index: 9999;
+                    opacity: 0;
+                    transition: opacity 0.3s ease;
+                    backdrop-filter: blur(10px);
+                    border: 1px solid rgba(255, 255, 255, 0.2);
+                }
+                .toast-notification.show {
+                    opacity: 1;
+                }
+            `;
+            
+            // 添加样式到页面
+            const styleElement = document.createElement('style');
+            styleElement.textContent = toastStyle;
+            document.head.appendChild(styleElement);
+            
+            if (dotmemoryCard && lcAudio) {
+                dotmemoryCard.addEventListener('click', function() {
+                    // 重置音频并播放
+                    lcAudio.currentTime = 0;
+                    lcAudio.play().catch(function(error) {
+                        console.log('音频播放失败:', error);
+                    });
+                    
+                    // 显示提示
+                    showToast('Missed shot at Dotmemory in the Head due to Backtrack failure [hc:100% | bt:4ticks]');
+                });
+                
+                // 为了更好的用户体验，添加鼠标悬停效果提示可点击
+                dotmemoryCard.style.cursor = 'pointer';
+                dotmemoryCard.addEventListener('mouseenter', function() {
+                    this.style.transform = 'scale(1.02) translateY(-5px)';
+                    this.style.transition = 'all 0.3s ease';
+                });
+                
+                dotmemoryCard.addEventListener('mouseleave', function() {
+                    this.style.transform = 'scale(1) translateY(0)';
+                });
+            }
+            
+            // 显示提示框的函数
+            function showToast(message) {
+                // 检查是否已存在toast元素，如果有则移除
+                const existingToast = document.querySelector('.toast-notification');
+                if (existingToast) {
+                    existingToast.remove();
+                }
+                
+                // 创建新的toast元素
+                const toast = document.createElement('div');
+                toast.className = 'toast-notification';
+                toast.textContent = message;
+                document.body.appendChild(toast);
+                
+                // 显示toast
+                setTimeout(() => {
+                    toast.classList.add('show');
+                }, 10);
+                
+                // 2秒后隐藏toast
+                setTimeout(() => {
+                    toast.classList.remove('show');
+                    setTimeout(() => {
+                        toast.remove();
+                    }, 300);
+                }, 2000);
+            }
+        });
+
+
+        
+        // 高级动效增强
+        function initAdvancedEffects() {
+            // 高级按钮波纹效果
+            const buttons = document.querySelectorAll('.btn-advanced');
+            buttons.forEach(button => {
+                button.addEventListener('click', function(e) {
+                    const ripple = document.createElement('span');
+                    ripple.classList.add('ripple');
+                    this.appendChild(ripple);
+                    
+                    const rect = this.getBoundingClientRect();
+                    const size = Math.max(rect.width, rect.height);
+                    const x = e.clientX - rect.left - size / 2;
+                    const y = e.clientY - rect.top - size / 2;
+                    
+                    ripple.style.width = ripple.style.height = size + 'px';
+                    ripple.style.left = x + 'px';
+                    ripple.style.top = y + 'px';
+                    
+                    setTimeout(() => {
+                        ripple.remove();
+                    }, 600);
+                });
+            });
+            
+            // 高级卡片悬停效果
+            const cards = document.querySelectorAll('.card-advanced');
+            cards.forEach(card => {
+                card.addEventListener('mousemove', function(e) {
+                    const rect = this.getBoundingClientRect();
+                    const x = e.clientX - rect.left;
+                    const y = e.clientY - rect.top;
+                    
+                    const centerX = rect.width / 2;
+                    const centerY = rect.height / 2;
+                    
+                    const deltaX = (x - centerX) / centerX;
+                    const deltaY = (y - centerY) / centerY;
+                    
+                    this.style.transform = `perspective(1000px) rotateY(${deltaX * 5}deg) rotateX(${-deltaY * 5}deg) scale3d(1.02, 1.02, 1.02)`;
+                });
+                
+                card.addEventListener('mouseleave', function() {
+                    this.style.transform = 'perspective(1000px) rotateY(0) rotateX(0) scale3d(1, 1, 1)';
+                });
+            });
+            
+            // 高级文本效果
+            const magneticTexts = document.querySelectorAll('.magnetic-text');
+            magneticTexts.forEach(text => {
+                text.addEventListener('mousemove', function(e) {
+                    const rect = this.getBoundingClientRect();
+                    const x = e.clientX - rect.left;
+                    const y = e.clientY - rect.top;
+                    
+                    const centerX = rect.width / 2;
+                    const centerY = rect.height / 2;
+                    
+                    const deltaX = (x - centerX) / centerX;
+                    const deltaY = (y - centerY) / centerY;
+                    
+                    this.style.transform = `translate(${deltaX * 2}px, ${deltaY * 2}px)`;
+                });
+                
+                text.addEventListener('mouseleave', function() {
+                    this.style.transform = 'translate(0, 0)';
+                });
+            });
+            
+            // 高级导航栏滚动隐藏/显示效果
+            let lastScrollTop = 0;
+            const header = document.querySelector('header');
+            
+            window.addEventListener('scroll', function() {
+                let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+                
+                if (scrollTop > lastScrollTop && scrollTop > 100) {
+                    header.style.transform = 'translateY(-100%)';
+                } else {
+                    header.style.transform = 'translateY(0)';
+                }
+                
+                lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
+            });
+            
+            // 高级滚动指示器
+            function updateScrollIndicator() {
+                const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+                const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+                const scrolled = (winScroll / height);
+                
+                const indicator = document.querySelector('.scroll-indicator');
+                if (indicator) {
+                    indicator.style.width = scrolled * 100 + '%';
+                }
+            }
+            
+            window.addEventListener('scroll', updateScrollIndicator);
+        }
+        
+        // 初始化高级动效
+        initAdvancedEffects();
+    </script>
+</body>
+</html>

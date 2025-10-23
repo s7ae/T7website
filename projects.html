@@ -1,0 +1,596 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>项目集 · s7ae 网络科技工作室</title>
+    <meta name="description" content="s7ae 网络科技工作室 — 专注软硬件定制开发" />
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/8.4.5/swiper-bundle.min.css">
+    <!-- 艺术字体引入 -->
+    <link href="https://fonts.googleapis.com/css2?family=Audiowide&family=Monoton&family=Orbitron:wght@400;500;700;900&display=swap" rel="stylesheet">
+    <style>
+        /* 高级动效样式 - 极致丝滑体验 */
+        
+        /* 高级过渡效果 */
+        .smooth-transition {
+          transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+        
+        /* 高级背景效果 */
+        .glass-morphism {
+          background: rgba(255, 255, 255, 0.05);
+          backdrop-filter: blur(10px);
+          -webkit-backdrop-filter: blur(10px);
+          border: 1px solid rgba(255, 255, 255, 0.1);
+          box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        }
+        
+        /* 霓虹发光效果 */
+        .neon-glow {
+          position: relative;
+          overflow: hidden;
+        }
+        
+        .neon-glow::before {
+          content: '';
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          background: var(--glow-color);
+          filter: blur(var(--glow-size));
+          opacity: 0;
+          transition: opacity 0.3s ease;
+          z-index: -1;
+        }
+        
+        .neon-glow:hover::before {
+          opacity: 1;
+        }
+        
+        /* 液体填充效果 */
+        .liquid-fill {
+          position: relative;
+          overflow: hidden;
+        }
+        
+        .liquid-fill::after {
+          content: '';
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          background: linear-gradient(45deg, rgba(124, 92, 255, 0.2), rgba(95, 255, 197, 0.2));
+          transform: translateY(100%);
+          transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+          z-index: -1;
+        }
+        
+        .liquid-fill:hover::after {
+          transform: translateY(0);
+        }
+        
+        /* 高级按钮效果 */
+        .btn-advanced {
+          position: relative;
+          overflow: hidden;
+          border-radius: 50px;
+          padding: 12px 24px;
+          font-weight: 600;
+          text-transform: uppercase;
+          letter-spacing: 1px;
+          transition: all 0.3s ease;
+          z-index: 1;
+        }
+        
+        .btn-advanced::before {
+          content: '';
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          background: linear-gradient(45deg, #7c5cff, #5fffc5);
+          opacity: 0;
+          transition: opacity 0.3s ease;
+          z-index: -1;
+        }
+        
+        .btn-advanced:hover::before {
+          opacity: 0.2;
+        }
+        
+        .btn-advanced:hover {
+          transform: translateY(-3px);
+          box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+        
+        /* 高级卡片效果 */
+        .card-advanced {
+          position: relative;
+          overflow: hidden;
+          border-radius: 16px;
+          background: rgba(255, 255, 255, 0.05);
+          backdrop-filter: blur(10px);
+          -webkit-backdrop-filter: blur(10px);
+          border: 1px solid rgba(255, 255, 255, 0.1);
+          transition: all 0.3s ease;
+        }
+        
+        .card-advanced::before {
+          content: '';
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          background: linear-gradient(45deg, rgba(124, 92, 255, 0.1), rgba(95, 255, 197, 0.1));
+          opacity: 0;
+          transition: opacity 0.3s ease;
+          z-index: -1;
+        }
+        
+        .card-advanced:hover::before {
+          opacity: 1;
+        }
+        
+        .card-advanced:hover {
+          transform: translateY(-5px);
+          box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+        }
+        
+        /* 高级文本效果 */
+        .text-advanced {
+          position: relative;
+          display: inline-block;
+        }
+        
+        .text-advanced::after {
+          content: '';
+          position: absolute;
+          bottom: -5px;
+          left: 0;
+          width: 100%;
+          height: 2px;
+          background: linear-gradient(90deg, #7c5cff, #5fffc5);
+          transform: scaleX(0);
+          transform-origin: left;
+          transition: transform 0.3s ease;
+        }
+        
+        .text-advanced:hover::after {
+          transform: scaleX(1);
+        }
+        
+        /* 高级导航栏效果 */
+        .nav-advanced {
+          position: fixed;
+          top: 0;
+          left: 0;
+          width: 100%;
+          padding: 20px 0;
+          background: rgba(11, 15, 26, 0.8);
+          backdrop-filter: blur(10px);
+          -webkit-backdrop-filter: blur(10px);
+          border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+          transition: all 0.3s ease;
+          z-index: 1000;
+        }
+        
+        .nav-advanced.scrolled {
+          padding: 15px 0;
+          background: rgba(11, 15, 26, 0.95);
+          box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        .project-hero {
+          padding-top: 120px;
+          margin-top: 0;
+        }
+        
+        .container > section:first-of-type {
+          padding-top: 120px;
+        }
+        
+        /* 高级滚动条 */
+        .scrollbar-advanced::-webkit-scrollbar {
+          width: 8px;
+        }
+        
+        .scrollbar-advanced::-webkit-scrollbar-track {
+          background: rgba(11, 15, 26, 0.1);
+        }
+        
+        .scrollbar-advanced::-webkit-scrollbar-thumb {
+          background: linear-gradient(45deg, #7c5cff, #5fffc5);
+          border-radius: 4px;
+        }
+        
+        .scrollbar-advanced::-webkit-scrollbar-thumb:hover {
+          background: linear-gradient(45deg, #5fffc5, #7c5cff);
+        }
+        
+        /* 响应式调整 */
+        @media (max-width: 768px) {
+          .btn-advanced {
+            padding: 10px 20px;
+            font-size: 14px;
+          }
+          
+          .card-advanced {
+            margin-bottom: 20px;
+          }
+        }
+        
+        /* 基础样式 */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        #canvas-background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: linear-gradient(135deg, #0a0a1a 0%, #1a1a3a 50%, #0a0a1a 100%);
+        }
+        .container {
+            position: relative;
+            z-index: 1;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 30px 0;
+            position: relative;
+            z-index: 10;
+        }
+        .logo {
+            background-size: contain;
+            display: inline-block;
+        }
+        
+        .logo a {
+            color: white;
+            font-size: 28px;
+            font-weight: 400;
+            font-family: 'Audiowide', cursive;
+            text-decoration: none;
+            /* 苹果风格玻璃效果 */
+            text-shadow: 0 0 10px rgba(0, 245, 255, 0.9),
+                         0 0 20px rgba(0, 245, 255, 0.7);
+            letter-spacing: 2px;
+            padding: 10px 15px;
+            border-radius: 12px;
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.04);
+            backdrop-filter: blur(30px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.03);
+            transition: all 0.2s ease;
+        }
+        .logo a:hover {
+            background: rgba(255, 255, 255, 0.06);
+            border-color: rgba(255, 255, 255, 0.08);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+        }
+        .menu ul {
+            display: flex;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+        .menu ul li {
+            margin-left: 30px;
+        }
+        .menu ul li a {
+            color: white;
+            text-decoration: none;
+            font-size: 16px;
+            transition: all 0.2s ease;
+            padding: 10px 20px;
+            border-radius: 12px;
+            background: rgba(255, 255, 255, 0.04);
+            backdrop-filter: blur(30px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            display: inline-block;
+            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.03);
+        }
+        .menu ul li a:hover {
+            background: rgba(255, 255, 255, 0.06);
+            border-color: rgba(255, 255, 255, 0.08);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+            transform: translateY(-1px);
+        }
+        
+        .project-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+            margin-bottom: 60px;
+        }
+        .card {
+            background: rgba(255, 255, 255, 0.04);
+            border-radius: 16px;
+            overflow: hidden;
+            backdrop-filter: blur(30px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.03);
+            transition: all 0.2s ease;
+            position: relative;
+            text-decoration: none;
+            color: white;
+            display: block;
+        }
+        .card:hover {
+            background: rgba(255, 255, 255, 0.06);
+            border-color: rgba(255, 255, 255, 0.08);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+            transform: translateY(-2px);
+        }
+        .card img {
+            width: 100%;
+            height: 200px;
+            object-fit: contain;
+            background: rgba(255, 255, 255, 0.05);
+        }
+        .card h3 {
+            padding: 20px 20px 0;
+            font-size: 20px;
+            margin-bottom: 8px;
+        }
+        .card p {
+            padding: 0 20px 15px;
+            margin: 0;
+            font-size: 14px;
+        }
+        .tags {
+            padding: 0 20px 20px;
+            display: flex;
+            gap: 10px;
+        }
+        .tag {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 12px;
+        }
+    </style>
+</head>
+<body class="scrollbar-custom scrollbar-advanced">
+    <canvas id="canvas-background"></canvas>
+    <div class="container">
+        <header class="navbar-scrolled nav-advanced">
+            <div class="logo magnetic-hover">
+                <a href="index.html" onclick="localStorage.setItem('skipIntroAnimation', 'true');" class="text-hover-glow">s7ae</a>
+            </div>
+            <div class="menu">
+                <ul>
+                    <li><a href="index.html" onclick="localStorage.setItem('skipIntroAnimation', 'true');" class="magnetic-hover text-hover-glow">首页</a></li>
+                    <li><a href="projects.html" class="magnetic-hover text-hover-glow">项目</a></li>
+                    <li><a href="team.html" class="magnetic-hover text-hover-glow">鸣谢</a></li>
+                    <li><a href="contact.html" class="magnetic-hover text-hover-glow">联系我们</a></li>
+                </ul>
+            </div>
+        </header>
+        
+        <section class="hero">
+            <div class="hero__left">
+                <h1 class="scroll-animate magnetic-text text-advanced">精选项目</h1>
+                <div class="lead">我们的作品展示了我们在软硬件定制开发领域的专业能力和创新精神</div>
+            </div>
+        </section>
+        
+        <section>
+            <div class="project-grid scroll-animate">
+                <a class="card scroll-animate card-3d hover-tilt card-advanced" href="PRODs/Evolution.html">
+                    <img src="assets/images/EVO.png" alt="Evolution.GS" class="hover-zoom">
+                    <h3 class="text-hover-glow text-advanced">Evolution.GS</h3>
+                    <p style="opacity:0.9">高性能Gamesense脚本</p>
+                    <div class="tags">
+                        <span class="tag hover-scale text-advanced">定制开发</span>
+                        <span class="tag hover-scale text-advanced">高性能</span>
+                    </div>
+                </a>
+                <a class="card scroll-animate card-3d hover-tilt card-advanced" href="PRODs/T7Tech.html">
+                    <img src="assets/images/T7.png" alt="T7Tech" class="hover-zoom">
+                    <h3 class="text-hover-glow text-advanced">T7Tech</h3>
+                    <p style="opacity:0.9">划时代级别的Gamesense脚本</p>
+                    <div class="tags">
+                        <span class="tag hover-scale text-advanced">定制开发</span>
+                        <span class="tag hover-scale text-advanced">高性能</span>
+                    </div>
+                </a>
+                <a class="card scroll-animate card-3d hover-tilt card-advanced" href="PRODs/zuhaowan.html">
+                    <img src="assets/images/guozu.png" alt="过租器" class="hover-zoom">
+                    <h3 class="text-hover-glow text-advanced">过租器</h3>
+                    <p style="opacity:0.9">内核级租号反作弊屏蔽器</p>
+                    <div class="tags">
+                        <span class="tag hover-scale text-advanced">定制开发</span>
+                        <span class="tag hover-scale text-advanced">高性能</span>
+                    </div>
+                </a>
+                <a class="card card-advanced" href="PRODs/SAttacker.html">
+                    <div style="height: 150px; display: flex; align-items: center; justify-content: center; font-size: 24px; font-weight: bold; color: white;">网吧矛</div>
+                    <p style="opacity:0.9">最安全的破盾器</p>
+                    <div class="tags">
+                        <span class="tag hover-scale text-advanced">定制开发</span>
+                        <span class="tag hover-scale text-advanced">高性能</span>
+                    </div>
+                </a>
+            </div>
+        </section>
+        
+        <div class="footer">© 2025 s7ae 网络科技工作室</div>
+    </div>
+
+    <script>
+        // 粒子背景效果
+        const canvas = document.getElementById('canvas-background');
+        const ctx = canvas.getContext('2d');
+        
+        // 设置画布尺寸
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+        
+        resizeCanvas();
+        window.addEventListener('resize', resizeCanvas);
+        
+        // 粒子配置
+        const particleCount = 80;
+        const particles = [];
+        
+        // 创建粒子类
+        class Particle {
+            constructor() {
+                this.x = Math.random() * canvas.width;
+                this.y = Math.random() * canvas.height;
+                this.size = Math.random() * 3 + 1;
+                this.speedX = Math.random() * 0.5 - 0.25;
+                this.speedY = Math.random() * 0.5 - 0.25;
+                this.color = `hsl(${Math.random() * 360}, 100%, 70%)`;
+            }
+            
+            update() {
+                this.x += this.speedX;
+                this.y += this.speedY;
+                
+                // 边界检查
+                if (this.x < 0 || this.x > canvas.width) this.speedX *= -1;
+                if (this.y < 0 || this.y > canvas.height) this.speedY *= -1;
+            }
+            
+            draw() {
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fillStyle = this.color;
+                ctx.fill();
+            }
+        }
+        
+        // 创建粒子
+        function initParticles() {
+            for (let i = 0; i < particleCount; i++) {
+                particles.push(new Particle());
+            }
+        }
+        
+        // 连接粒子
+        function connectParticles() {
+            const maxDistance = 120;
+            
+            for (let a = 0; a < particles.length; a++) {
+                for (let b = a; b < particles.length; b++) {
+                    const dx = particles[a].x - particles[b].x;
+                    const dy = particles[a].y - particles[b].y;
+                    const distance = Math.sqrt(dx * dx + dy * dy);
+                    
+                    if (distance < maxDistance) {
+                        const opacity = 1 - distance / maxDistance;
+                        ctx.beginPath();
+                        ctx.strokeStyle = `rgba(255, 255, 255, ${opacity * 0.3})`;
+                        ctx.lineWidth = 0.5;
+                        ctx.moveTo(particles[a].x, particles[a].y);
+                        ctx.lineTo(particles[b].x, particles[b].y);
+                        ctx.stroke();
+                    }
+                }
+            }
+        }
+        
+        // 动画循环
+        function animate() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            
+            // 绘制渐变背景
+            const gradient = ctx.createLinearGradient(0, 0, canvas.width, canvas.height);
+            gradient.addColorStop(0, '#0a0a1a');
+            gradient.addColorStop(0.5, '#1a1a3a');
+            gradient.addColorStop(1, '#0a0a1a');
+            ctx.fillStyle = gradient;
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            
+            for (let i = 0; i < particles.length; i++) {
+                particles[i].update();
+                particles[i].draw();
+            }
+            
+            connectParticles();
+            requestAnimationFrame(animate);
+        }
+        
+        // 鼠标交互
+        let mouseX = null;
+        let mouseY = null;
+        
+        canvas.addEventListener('mousemove', (e) => {
+            mouseX = e.x;
+            mouseY = e.y;
+        });
+        
+        canvas.addEventListener('mouseout', () => {
+            mouseX = null;
+            mouseY = null;
+        });
+        
+        // 鼠标吸引效果
+        function updateParticleWithMouse(particle) {
+            if (mouseX !== null) {
+                const dx = mouseX - particle.x;
+                const dy = mouseY - particle.y;
+                const distance = Math.sqrt(dx * dx + dy * dy);
+                const maxDistance = 150;
+                
+                if (distance < maxDistance) {
+                    const force = (maxDistance - distance) / maxDistance * 0.2;
+                    particle.x += dx * force;
+                    particle.y += dy * force;
+                }
+            }
+        }
+        
+        // 修改动画循环，加入鼠标交互
+        function animate() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            
+            // 绘制渐变背景
+            const gradient = ctx.createLinearGradient(0, 0, canvas.width, canvas.height);
+            gradient.addColorStop(0, '#0a0a1a');
+            gradient.addColorStop(0.5, '#1a1a3a');
+            gradient.addColorStop(1, '#0a0a1a');
+            ctx.fillStyle = gradient;
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            
+            for (let i = 0; i < particles.length; i++) {
+                updateParticleWithMouse(particles[i]);
+                particles[i].update();
+                particles[i].draw();
+            }
+            
+            connectParticles();
+            requestAnimationFrame(animate);
+        }
+        
+        // 初始化并开始动画
+        initParticles();
+        animate();
+    </script>
+    <!-- 动画脚本 -->
+    <script src="liquidglass.js"></script>
+</body>
+</html>

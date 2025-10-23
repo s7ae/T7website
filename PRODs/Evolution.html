@@ -1,0 +1,402 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Evolution · s7ae 网络科技工作室</title>
+    <meta name="description" content="s7ae 网络科技工作室 — 专注软硬件定制开发" />
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/8.4.5/swiper-bundle.min.css">
+    <!-- 艺术字体引入 -->
+    <link href="https://fonts.googleapis.com/css2?family=Audiowide&family=Monoton&family=Orbitron:wght@400;500;700;900&display=swap" rel="stylesheet">
+    <style>
+        #canvas-background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: linear-gradient(135deg, #0a0a1a 0%, #1a1a3a 50%, #0a0a1a 100%);
+        }
+        .container {
+            position: relative;
+            z-index: 1;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 30px 0;
+            position: relative;
+            z-index: 10;
+        }
+        .logo {
+            background-size: contain;
+            display: inline-block;
+        }
+        
+        .logo a {
+            color: white;
+            font-size: 28px;
+            font-weight: 400;
+            font-family: 'Audiowide', cursive;
+            text-decoration: none;
+            /* 苹果风格玻璃效果 */
+            text-shadow: 0 0 10px rgba(0, 245, 255, 0.9),
+                         0 0 20px rgba(0, 245, 255, 0.7);
+            letter-spacing: 2px;
+            padding: 10px 15px;
+            border-radius: 12px;
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.04);
+            backdrop-filter: blur(30px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.03);
+            transition: all 0.2s ease;
+        }
+        .logo a:hover {
+            background: rgba(255, 255, 255, 0.06);
+            border-color: rgba(255, 255, 255, 0.08);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+        }
+        .menu ul {
+            display: flex;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+        .menu ul li {
+            margin-left: 30px;
+        }
+        .menu ul li a {
+            color: white;
+            text-decoration: none;
+            font-size: 16px;
+            transition: all 0.2s ease;
+            padding: 10px 20px;
+            border-radius: 12px;
+            background: rgba(255, 255, 255, 0.04);
+            backdrop-filter: blur(30px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            display: inline-block;
+            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.03);
+        }
+        .menu ul li a:hover {
+            background: rgba(255, 255, 255, 0.06);
+            border-color: rgba(255, 255, 255, 0.08);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+            transform: translateY(-1px);
+        }
+        
+        /* 高级动效样式 */
+        /* 高级过渡效果 */
+        * {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        /* 高级背景效果 */
+        .advanced-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: linear-gradient(135deg, #0a0a1a 0%, #1a1a3a 50%, #0a0a1a 100%);
+            overflow: hidden;
+        }
+        
+        .advanced-bg::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(0, 245, 255, 0.1) 0%, rgba(138, 43, 226, 0.05) 50%, transparent 70%);
+            animation: rotate 20s linear infinite;
+        }
+        
+        @keyframes rotate {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        /* 高级霓虹发光效果 */
+        .neon-glow {
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .neon-glow::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            animation: neon-sweep 3s infinite;
+        }
+        
+        @keyframes neon-sweep {
+            0% { left: -100%; }
+            50%, 100% { left: 100%; }
+        }
+        
+        /* 高级液体填充效果 */
+        .liquid-fill {
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .liquid-fill::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 0;
+            background: linear-gradient(0deg, rgba(0, 245, 255, 0.3), transparent);
+            animation: liquid-rise 4s ease-in-out infinite alternate;
+        }
+        
+        @keyframes liquid-rise {
+            0% { height: 0; }
+            100% { height: 100%; }
+        }
+        
+        /* 高级按钮效果 */
+        .btn-advanced {
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-advanced::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.2);
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+        }
+        
+        .btn-advanced:hover::before {
+            width: 300px;
+            height: 300px;
+        }
+        
+        .ripple {
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.5);
+            transform: scale(0);
+            animation: ripple-animation 0.6s ease-out;
+            z-index: 0;
+        }
+        
+        @keyframes ripple-animation {
+            to {
+                transform: scale(4);
+                opacity: 0;
+            }
+        }
+        
+        /* 高级卡片效果 */
+        .card-advanced {
+            position: relative;
+            overflow: hidden;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 16px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            transform-style: preserve-3d;
+            perspective: 1000px;
+        }
+        
+        .card-advanced::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+            transform: translateX(-100%);
+            transition: transform 0.6s;
+        }
+        
+        .card-advanced:hover::before {
+            transform: translateX(100%);
+        }
+        
+        .card-advanced:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+        }
+        
+        /* 高级文本效果 */
+        .text-advanced {
+            position: relative;
+            display: inline-block;
+            transition: all 0.3s ease;
+        }
+        
+        .text-advanced::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, #00f5ff, #8a2be2);
+            transition: width 0.3s ease;
+        }
+        
+        .text-advanced:hover::after {
+            width: 100%;
+        }
+        
+        /* 高级导航栏效果 */
+        .nav-advanced {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+            background: rgba(10, 10, 26, 0.8);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        /* 高级滚动条效果 */
+        .scrollbar-advanced::-webkit-scrollbar {
+            width: 8px;
+        }
+        
+        .scrollbar-advanced::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 4px;
+        }
+        
+        .scrollbar-advanced::-webkit-scrollbar-thumb {
+            background: linear-gradient(45deg, #00f5ff, #8a2be2);
+            border-radius: 4px;
+        }
+        
+        .scrollbar-advanced::-webkit-scrollbar-thumb:hover {
+            background: linear-gradient(45deg, #00d4cc, #7a22d2);
+        }
+        
+        /* 高级滚动指示器 */
+        .scroll-indicator {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 3px;
+            background: linear-gradient(90deg, #00f5ff, #8a2be2);
+            z-index: 1001;
+            transition: width 0.2s ease;
+        }
+        
+        /* 高级悬停效果 */
+        .hover-tilt {
+            transition: transform 0.3s ease;
+        }
+        
+        .text-hover-glow:hover {
+            text-shadow: 0 0 10px rgba(0, 245, 255, 0.8);
+        }
+        
+        .magnetic-hover {
+            position: relative;
+        }
+        
+        .magnetic-text {
+            display: inline-block;
+            transition: transform 0.2s ease;
+        }
+        
+        /* 为固定导航栏添加顶部间距 */
+        .project-hero {
+            padding-top: 120px;
+            margin-top: 0;
+        }
+        
+        /* 确保整个内容区域有足够的顶部间距 */
+        .container > section:first-of-type {
+            padding-top: 120px;
+        }
+        
+        /* 为固定导航栏添加顶部间距 */
+        .project-hero {
+            padding-top: 100px;
+        }
+    </style>
+</head>
+<body class="scrollbar-advanced">
+    <div class="scroll-indicator"></div>
+    <div class="container">
+        <header class="nav-advanced">
+            <div class="logo">
+                <a href="../index.html" class="magnetic-hover text-advanced" onclick="localStorage.setItem('skipIntroAnimation', 'true');">s7ae</a>
+            </div>
+            <div class="menu">
+                <ul class="scroll-animate">
+                    <li><a href="../index.html" class="magnetic-hover text-hover-glow text-advanced" onclick="localStorage.setItem('skipIntroAnimation', 'true');">首页</a></li>
+                    <li><a href="../projects.html" class="magnetic-hover text-hover-glow text-advanced">项目</a></li>
+                    <li><a href="../team.html" class="magnetic-hover text-hover-glow text-advanced">鸣谢</a></li>
+                    <li><a href="../contact.html" class="magnetic-hover text-hover-glow text-advanced">联系我们</a></li>
+                </ul>
+            </div>
+        </header>
+        
+        <section class="project-hero scroll-animate">
+            <div style="flex:1">
+                <h1 class="scroll-animate magnetic-text text-advanced">Evolution.GS</h1>
+                <p class="scroll-animate text-advanced" style="opacity:0.9;font-size:18px">高性能Gamesense脚本</p>
+                <div style="margin-top:18px">
+                    <div class="tags scroll-animate">
+                        <span class="tag text-hover-glow">类型：定制</span>
+                        <span class="tag text-hover-glow">技术：Lua / 脚本 / Anti-Aim</span>
+                        <span class="tag text-hover-glow">状态：停止销售但保持更新</span>
+                    </div>
+                </div>
+                <div style="margin-top:20px">
+                    <a class="btn btn--primary btn-advanced" href="https://www.bilibili.com/video/BV1YfeYzDEv9/?share_source=copy_web&vd_source=88c5c8a4ff8bd601a51a57e5d72d0e40" target="_blank">查看演示</a>
+                    <a class="btn btn--ghost btn-advanced" href="../projects.html">返回项目</a>
+                </div>
+            </div>
+            <div class="card-advanced hover-tilt">
+                <img src="../assets/images/EVO.png" alt="Evolution.GS">
+            </div>
+        </section>
+        
+        <section style="margin-top:30px">
+            <h2 class="magnetic-text text-advanced">项目亮点</h2>
+            <ul>
+                <li class="text-advanced">全新界面设计</li>
+                <li class="text-advanced">多位国内外知名脚本开发者监工</li>
+                <li class="text-advanced">多位国内外著名游戏玩家反复打磨builder</li>
+            </ul>
+        </section>
+        
+        <div class="footer">© 2025 s7ae 网络科技工作室</div>
+    </div>
+    <script src="../liquidglass.js"></script>
+</body>
+</html>
