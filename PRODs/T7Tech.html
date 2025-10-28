@@ -341,6 +341,217 @@
         .container > section:first-of-type {
             padding-top: 120px;
         }
+        /* 更新日志卡片样式 - 增强设计感 */
+        .update-log-card {
+            margin-top: 50px;
+            margin-bottom: 30px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 16px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 
+                0 8px 32px rgba(0, 0, 0, 0.1),
+                0 0 20px rgba(0, 245, 255, 0.1),
+                inset 0 1px 0 rgba(255, 255, 255, 0.1);
+            padding: 25px;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+        
+        /* 渐变边框效果 */
+        .update-log-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            border-radius: 16px;
+            padding: 1px;
+            background: linear-gradient(135deg, #00f5ff, #8a2be2, #00f5ff);
+            -webkit-mask: 
+                linear-gradient(#fff 0 0) content-box, 
+                linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+            pointer-events: none;
+            animation: gradient-shift 4s ease infinite;
+        }
+        
+        @keyframes gradient-shift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        
+        /* 发光顶部线条 */
+        .update-log-card::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, #00f5ff, #8a2be2);
+            box-shadow: 0 0 10px #00f5ff, 0 0 20px rgba(0, 245, 255, 0.5);
+            animation: glow-pulse 2s ease-in-out infinite;
+        }
+        
+        @keyframes glow-pulse {
+            0%, 100% { opacity: 0.8; }
+            50% { opacity: 1; }
+        }
+        
+        /* 标题样式 */
+        .update-log-card h3 {
+            color: #ffffff;
+            font-size: 22px;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            font-family: 'Orbitron', sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            text-shadow: 0 0 10px rgba(0, 245, 255, 0.5);
+            position: relative;
+            z-index: 2;
+        }
+        
+        .update-log-card h3 i {
+            margin-right: 10px;
+            color: #00f5ff;
+            font-size: 24px;
+            animation: spin-icon 4s linear infinite;
+        }
+        
+        @keyframes spin-icon {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        /* 内容区域 */
+        .update-log-content {
+            max-height: 300px;
+            overflow-y: auto;
+            padding-right: 10px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        /* 滚动条美化 */
+        .update-log-content::-webkit-scrollbar {
+            width: 6px;
+        }
+        
+        .update-log-content::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 3px;
+        }
+        
+        .update-log-content::-webkit-scrollbar-thumb {
+            background: linear-gradient(45deg, #00f5ff, #8a2be2);
+            border-radius: 3px;
+            box-shadow: 0 0 10px rgba(0, 245, 255, 0.5);
+        }
+        
+        /* 更新条目样式 */
+        .update-entry {
+            margin-bottom: 20px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            transition: transform 0.2s ease, opacity 0.2s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .update-entry:hover {
+            transform: translateX(5px);
+        }
+        
+        .update-entry:hover::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            background: linear-gradient(to bottom, #00f5ff, #8a2be2);
+            box-shadow: 0 0 10px rgba(0, 245, 255, 0.5);
+        }
+        
+        .update-entry:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+        
+        /* 日期样式 */
+        .update-date {
+            color: #00f5ff;
+            font-size: 14px;
+            margin-bottom: 8px;
+            font-weight: 600;
+            font-family: 'Orbitron', sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            display: inline-block;
+            padding: 3px 10px;
+            background: rgba(0, 245, 255, 0.1);
+            border-radius: 15px;
+            border: 1px solid rgba(0, 245, 255, 0.2);
+        }
+        
+        /* 详情样式 */
+        .update-details {
+            color: rgba(255, 255, 255, 0.8);
+            line-height: 1.6;
+            padding-left: 20px;
+        }
+        
+        .update-details p {
+            margin: 5px 0;
+            position: relative;
+            transition: color 0.2s ease;
+        }
+        
+        .update-details p:hover {
+            color: #ffffff;
+        }
+        
+        .update-details p::before {
+            content: '•';
+            color: #8a2be2;
+            position: absolute;
+            left: -20px;
+            font-size: 18px;
+            animation: pulse-dot 2s ease-in-out infinite;
+        }
+        
+        @keyframes pulse-dot {
+            0%, 100% { opacity: 0.6; transform: scale(1); }
+            50% { opacity: 1; transform: scale(1.2); }
+        }
+        
+        /* 悬浮光晕效果 */
+        .update-log-card:hover {
+            box-shadow: 
+                0 12px 40px rgba(0, 0, 0, 0.15),
+                0 0 30px rgba(0, 245, 255, 0.2),
+                inset 0 1px 0 rgba(255, 255, 255, 0.1);
+            transform: translateY(-2px);
+        }
+        
+        /* 响应式调整 */
+        @media (max-width: 768px) {
+            .update-log-card {
+                padding: 20px;
+            }
+            
+            .update-log-card h3 {
+                font-size: 18px;
+            }
+        }
     </style>
 </head>
 <body class="scrollbar-advanced">
@@ -390,6 +601,37 @@
                 <li class="text-advanced">划时代的强度和性能</li>
             </ul>
         </section>
+        
+        <!-- 更新日志卡片 -->
+        <div class="update-log-card">
+            <h3><i class="ri-refresh-line"></i>更新日志</h3>
+            <div class="update-log-content">
+                <div class="update-entry">
+                    <div class="update-date">2025-10-24</div>
+                    <div class="update-details">
+                        <p>• 全面优化解析器的所有部分(但并非重构)</p>
+                        <p>• 修复部分玩家闪退问题</p>
+                        <p>• GS平台自带假身替换为自研假身</p>
+                    </div>
+                </div>
+                <div class="update-entry">
+                    <div class="update-date">2025-10-11</div>
+                    <div class="update-details">
+                        <p>• 全新的独立支持库发布，修复平台硬伤</p>
+                        <p>• 添加Ideal Sidebased Defensive的更成熟方案</p>
+                        <p>• 优化堆栈占用，提高运行稳定性</p>
+                    </div>
+                </div>
+                <div class="update-entry">
+                    <div class="update-date">2025-10-03</div>
+                    <div class="update-details">
+                        <p>• 首次发布T7Tech核心灰度测试版本</p>
+                        <p>• 实现超高度自定义的builder模块</p>
+                        <p>• 划时代的强度和性能表现</p>
+                    </div>
+                </div>
+            </div>
+        </div>
         
         <div class="footer">© 2025 s7ae 网络科技工作室</div>
     </div>
