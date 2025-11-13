@@ -8,7 +8,6 @@
     <link rel="stylesheet" href="../styles.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/8.4.5/swiper-bundle.min.css">
-    <!-- 艺术字体引入 -->
     <link href="https://fonts.googleapis.com/css2?family=Audiowide&family=Monoton&family=Orbitron:wght@400;500;700;900&display=swap" rel="stylesheet">
     <style>
         #canvas-background {
@@ -46,7 +45,6 @@
             font-weight: 400;
             font-family: 'Audiowide', cursive;
             text-decoration: none;
-            /* 苹果风格玻璃效果 */
             text-shadow: 0 0 10px rgba(0, 245, 255, 0.9),
                          0 0 20px rgba(0, 245, 255, 0.7);
             letter-spacing: 2px;
@@ -93,13 +91,10 @@
             transform: translateY(-1px);
         }
         
-        /* 高级动效样式 */
-        /* 高级过渡效果 */
         * {
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
         
-        /* 高级背景效果 */
         .advanced-bg {
             position: fixed;
             top: 0;
@@ -127,7 +122,6 @@
             100% { transform: rotate(360deg); }
         }
         
-        /* 高级霓虹发光效果 */
         .neon-glow {
             position: relative;
             overflow: hidden;
@@ -149,7 +143,6 @@
             50%, 100% { left: 100%; }
         }
         
-        /* 高级液体填充效果 */
         .liquid-fill {
             position: relative;
             overflow: hidden;
@@ -171,7 +164,6 @@
             100% { height: 100%; }
         }
         
-        /* 高级按钮效果 */
         .btn-advanced {
             position: relative;
             overflow: hidden;
@@ -213,7 +205,6 @@
             }
         }
         
-        /* 高级卡片效果 */
         .card-advanced {
             position: relative;
             overflow: hidden;
@@ -542,7 +533,7 @@
             transform: translateY(-2px);
         }
         
-        /* 响应式调整 */
+
         @media (max-width: 768px) {
             .update-log-card {
                 padding: 20px;
@@ -602,10 +593,21 @@
             </ul>
         </section>
         
-        <!-- 更新日志卡片 -->
+
         <div class="update-log-card">
             <h3><i class="ri-refresh-line"></i>更新日志</h3>
             <div class="update-log-content">
+                <div class="update-entry">
+                    <div class="update-date">2025-11-13</div>
+                    <div class="update-details">
+                        <p>• 独立Exploit支持库完全重构</p>
+                        <p>• 修复主动BreakLC与Defensive AA的释放问题</p>
+                        <p>• Jitter Dynamic Size与Jitter的交互逻辑优化</p>
+                        <p>• 修复了一些因头部方法而引起的丢帧</p>
+                        <p>• 优化了云端的L7</p>
+                        <p>• 修复了一个没人注意到的安全性漏洞</p>
+                    </div>
+                </div>
                 <div class="update-entry">
                     <div class="update-date">2025-10-24</div>
                     <div class="update-details">
