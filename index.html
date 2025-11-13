@@ -8,17 +8,11 @@
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/8.4.5/swiper-bundle.min.css">
-    <!-- 艺术字体引入 -->
     <link href="https://fonts.googleapis.com/css2?family=Audiowide&family=Monoton&family=Orbitron:wght@400;500;700;900&display=swap" rel="stylesheet">
     <style>
-        /* 高级动效样式 - 极致丝滑体验 */
-        
-        /* 高级过渡效果 */
         .smooth-transition {
           transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
         }
-        
-        /* 高级背景效果 */
         .glass-morphism {
           background: rgba(255, 255, 255, 0.05);
           backdrop-filter: blur(10px);
@@ -26,13 +20,10 @@
           border: 1px solid rgba(255, 255, 255, 0.1);
           box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
         }
-        
-        /* 霓虹发光效果 */
         .neon-glow {
           position: relative;
           overflow: hidden;
         }
-        
         .neon-glow::before {
           content: '';
           position: absolute;
@@ -46,17 +37,13 @@
           transition: opacity 0.3s ease;
           z-index: -1;
         }
-        
         .neon-glow:hover::before {
           opacity: 1;
         }
-        
-        /* 液体填充效果 */
         .liquid-fill {
           position: relative;
           overflow: hidden;
         }
-        
         .liquid-fill::after {
           content: '';
           position: absolute;
@@ -69,12 +56,9 @@
           transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
           z-index: -1;
         }
-        
         .liquid-fill:hover::after {
           transform: translateY(0);
         }
-        
-        /* 高级按钮效果 */
         .btn-advanced {
           position: relative;
           overflow: hidden;
@@ -86,7 +70,6 @@
           transition: all 0.3s ease;
           z-index: 1;
         }
-        
         .btn-advanced::before {
           content: '';
           position: absolute;
@@ -99,17 +82,13 @@
           transition: opacity 0.3s ease;
           z-index: -1;
         }
-        
         .btn-advanced:hover::before {
           opacity: 0.2;
         }
-        
         .btn-advanced:hover {
           transform: translateY(-3px);
           box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
         }
-        
-        /* 高级卡片效果 */
         .card-advanced {
           position: relative;
           overflow: hidden;
@@ -120,7 +99,6 @@
           border: 1px solid rgba(255, 255, 255, 0.1);
           transition: all 0.3s ease;
         }
-        
         .card-advanced::before {
           content: '';
           position: absolute;
@@ -133,22 +111,17 @@
           transition: opacity 0.3s ease;
           z-index: -1;
         }
-        
         .card-advanced:hover::before {
           opacity: 1;
         }
-        
         .card-advanced:hover {
           transform: translateY(-5px);
           box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
         }
-        
-        /* 高级文本效果 */
         .text-advanced {
           position: relative;
           display: inline-block;
         }
-        
         .text-advanced::after {
           content: '';
           position: absolute;
@@ -161,12 +134,9 @@
           transform-origin: left;
           transition: transform 0.3s ease;
         }
-        
         .text-advanced:hover::after {
           transform: scaleX(1);
         }
-        
-        /* 高级导航栏效果 */
         .nav-advanced {
           position: fixed;
           top: 0;
@@ -180,43 +150,33 @@
           transition: all 0.3s ease;
           z-index: 1000;
         }
-        
         .nav-advanced.scrolled {
           padding: 15px 0;
           background: rgba(11, 15, 26, 0.95);
           box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
         }
-        
-        /* 高级滚动条 */
         .scrollbar-advanced::-webkit-scrollbar {
           width: 8px;
         }
-        
         .scrollbar-advanced::-webkit-scrollbar-track {
           background: rgba(11, 15, 26, 0.1);
         }
-        
         .scrollbar-advanced::-webkit-scrollbar-thumb {
           background: linear-gradient(45deg, #7c5cff, #5fffc5);
           border-radius: 4px;
         }
-        
         .scrollbar-advanced::-webkit-scrollbar-thumb:hover {
           background: linear-gradient(45deg, #5fffc5, #7c5cff);
         }
-        
-        /* 响应式调整 */
         @media (max-width: 768px) {
           .btn-advanced {
             padding: 10px 20px;
             font-size: 14px;
           }
-          
           .card-advanced {
             margin-bottom: 20px;
           }
         }
-        /* 开场动画样式 */
         .intro-animation {
             position: fixed;
             top: 0;
@@ -229,13 +189,9 @@
             align-items: center;
             z-index: 9999;
             overflow: hidden;
-            /* 增强的背景效果 */
             box-shadow: inset 0 0 200px rgba(74, 74, 255, 0.3);
-            /* 过渡期间保持与粒子背景相同的基础 */
             transition: opacity 1s ease-in-out;
         }
-        
-        /* 装饰性背景圆点 */
         .intro-animation::before,
         .intro-animation::after {
             content: '';
@@ -245,7 +201,6 @@
             opacity: 0.3;
             animation: float 8s ease-in-out infinite;
         }
-        
         .intro-animation::before {
             width: 300px;
             height: 300px;
@@ -254,7 +209,6 @@
             left: 15%;
             animation-delay: 0s;
         }
-        
         .intro-animation::after {
             width: 250px;
             height: 250px;
@@ -263,7 +217,6 @@
             right: 15%;
             animation-delay: 2s;
         }
-        
         @keyframes float {
             0%, 100% {
                 transform: translate(0, 0);
@@ -272,7 +225,6 @@
                 transform: translate(30px, 30px);
             }
         }
-        
         .intro-text {
             font-size: 10rem;
             font-weight: 400;
@@ -287,14 +239,12 @@
             opacity: 0;
             transform: scale(0.5);
             animation: fadeInScale 0.8s ease forwards, gradientText 1s ease infinite;
-            /* 增强霓虹发光效果 */
             text-shadow: 0 0 15px rgba(0, 245, 255, 0.9), 
                          0 0 30px rgba(0, 245, 255, 0.7), 
                          0 0 50px rgba(0, 245, 255, 0.5),
                          0 0 100px rgba(255, 0, 255, 0.3);
             letter-spacing: 10px;
         }
-        
         @keyframes fadeInScale {
             0% {
                 opacity: 0;
@@ -309,7 +259,6 @@
                 transform: scale(1);
             }
         }
-        
         @keyframes gradientText {
             0% {
                 background-position: 0% 50%;
@@ -321,8 +270,6 @@
                 background-position: 0% 50%;
             }
         }
-        
-        /* 粒子线条效果 */
         .intro-lines {
             position: absolute;
             width: 100%;
@@ -330,23 +277,18 @@
             top: 0;
             left: 0;
         }
-        
         .intro-line {
             position: absolute;
             background: linear-gradient(90deg, transparent, rgba(74, 74, 255, 0.7), transparent);
             height: 1px;
             width: 0%;
             transform-origin: left;
-            /* 增强线条发光效果 */
             box-shadow: 0 0 5px rgba(74, 74, 255, 0.8);
         }
-        
-        /* 主内容淡入动画 */
         .container {
             opacity: 0;
             transition: opacity 1s ease-in-out;
         }
-        
         .container.fade-in {
             opacity: 1;
         }
@@ -356,15 +298,13 @@
             left: 0;
             width: 100%;
             height: 100%;
-            z-index: 9998; /* 将canvas置于intro-animation下方但在主内容上方 */
-            /* 丰富背景效果 */
+            z-index: 9998; 
             background: radial-gradient(circle at 20% 50%, rgba(74, 74, 255, 0.1) 0%, transparent 50%),
                         radial-gradient(circle at 80% 30%, rgba(255, 74, 153, 0.1) 0%, transparent 50%),
                         linear-gradient(135deg, #0a0a1a 0%, #1a1a3a 50%, #0a0a1a 100%);
-            opacity: 0; /* 默认隐藏，动画后显示 */
+            opacity: 0; 
             transition: opacity 1s ease-in-out;
         }
-        
         #canvas-background.fade-in {
             opacity: 1;
         }
@@ -387,14 +327,12 @@
             background-size: contain;
             display: inline-block;
         }
-        
         .logo a {
             color: white;
             font-size: 28px;
             font-weight: 400;
             font-family: 'Audiowide', cursive;
             text-decoration: none;
-            /* 苹果风格玻璃效果 */
             text-shadow: 0 0 10px rgba(0, 245, 255, 0.9),
                          0 0 20px rgba(0, 245, 255, 0.7);
             letter-spacing: 2px;
@@ -440,7 +378,6 @@
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
             transform: translateY(-1px);
         }
-
         .hero-section {
             margin-top: 50px;
             display: flex;
@@ -454,7 +391,6 @@
             justify-content: space-between;
             width: 100%;
             gap: 50px;
-            /* 添加响应式调整 */
             flex-wrap: wrap;
         }
         .hero-image {
@@ -471,10 +407,8 @@
         .hero-text {
             flex: 1;
             max-width: 500px;
-            /* 确保内容布局稳定 */
             display: flex;
             flex-direction: column;
-            /* 为按钮提供稳定的底部空间 */
             margin-bottom: 20px;
         }
         .hero-text h1 {
@@ -506,11 +440,8 @@
             box-shadow: 0 1px 2px rgba(0, 0, 0, 0.03);
             position: relative;
             overflow: hidden;
-            /* 确保按钮有明确的最小宽度，防止内容收缩 */
             min-width: 200px;
-            /* 确保文本居中，防止内容偏移 */
             text-align: center;
-            /* 增加点击区域 */
             touch-action: manipulation;
             -webkit-tap-highlight-color: transparent;
         }
@@ -580,8 +511,8 @@
             margin-top: 0;
             margin-bottom: 10px;
             font-size: 20px;
-            color: white; /* 确保标题颜色为白色 */
-            text-decoration: none; /* 确保标题没有下划线 */
+            color: white; 
+            text-decoration: none; 
         }
         .friend-card p {
             margin: 0;
@@ -596,12 +527,10 @@
     </style>
 </head>
 <body class="scrollbar-custom scrollbar-advanced">
-    <!-- 开场动画 -->
     <div class="intro-animation">
         <div class="intro-lines" id="intro-lines"></div>
         <h1 class="intro-text">s7ae</h1>
     </div>
-    
     <canvas id="canvas-background"></canvas>
     <div class="container">
         <header class="navbar-scrolled nav-advanced">
@@ -617,7 +546,6 @@
             </ul>
         </div>
     </header>
-        
         <div class="hero-section">
             <div class="hero-content">
                 <div class="hero-image scroll-animate parallax-medium card-advanced">
@@ -630,7 +558,6 @@
                 </div>
             </div>
         </div>
-        
         <section class="friends-projects scroll-animate">
             <h2 class="magnetic-text text-advanced">来自我的朋友们的高质量作品</h2>
             <div class="friends-projects-grid" style="display: flex; justify-content: space-between; gap: 30px;">
@@ -648,40 +575,30 @@
                 </a>
             </div>
         </section>
-        
         <div class="footer">© 2025 s7ae 网络科技工作室</div>
     </div>
-    
     <script>
-        // 动态背景粒子效果
         const canvas = document.getElementById('canvas-background');
         const ctx = canvas.getContext('2d');
-        
-        // 设置canvas尺寸
         function setCanvasSize() {
             canvas.width = window.innerWidth;
             canvas.height = window.innerHeight;
         }
-        
         setCanvasSize();
         window.addEventListener('resize', setCanvasSize);
-        
-        // 粒子类
         class Particle {
             constructor() {
                 this.x = Math.random() * canvas.width;
                 this.y = Math.random() * canvas.height;
-                this.size = Math.random() * 3 + 0.5; // 减小粒子大小，更细腻
+                this.size = Math.random() * 3 + 0.5; 
                 this.speedX = Math.random() * 0.5 - 0.25;
                 this.speedY = Math.random() * 0.5 - 0.25;
-                this.opacity = 0; // 初始透明度为0，用于动画过渡
-                this.targetOpacity = Math.random() * 0.5 + 0.3; // 目标透明度
-                this.opacitySpeed = 0.005; // 透明度变化速度
+                this.opacity = 0; 
+                this.targetOpacity = Math.random() * 0.5 + 0.3; 
+                this.opacitySpeed = 0.005; 
                 this.color = this.getRandomColor();
             }
-            
             getRandomColor() {
-                // 调整颜色以匹配开场动画
                 const colors = [
                     'rgba(74, 74, 255, 1)',
                     'rgba(255, 74, 153, 1)',
@@ -690,63 +607,45 @@
                 ];
                 return colors[Math.floor(Math.random() * colors.length)];
             }
-            
             update() {
-                // 平滑增加透明度，实现粒子渐入效果
                 if (this.opacity < this.targetOpacity) {
                     this.opacity += this.opacitySpeed;
                     if (this.opacity > this.targetOpacity) {
                         this.opacity = this.targetOpacity;
                     }
                 }
-                
                 this.x += this.speedX;
                 this.y += this.speedY;
-                
-                // 边界检测
                 if (this.x < 0 || this.x > canvas.width) this.speedX *= -1;
                 if (this.y < 0 || this.y > canvas.height) this.speedY *= -1;
             }
-            
             draw() {
                 ctx.beginPath();
                 ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-                // 使用粒子的透明度
                 const colorWithOpacity = this.color.replace('1)', `${this.opacity})`);
                 ctx.fillStyle = colorWithOpacity;
                 ctx.fill();
-                
-                // 添加粒子辉光效果，增强与线条动画的视觉衔接
                 ctx.shadowBlur = 5;
                 ctx.shadowColor = colorWithOpacity;
             }
         }
-        
-        // 创建粒子
         const particles = [];
-        const particleCount = 120; // 增加粒子数量，使过渡更丰富
-        
-        // 延迟创建粒子，避免页面刚加载时性能问题
+        const particleCount = 120; 
         setTimeout(() => {
             for (let i = 0; i < particleCount; i++) {
-                // 错开粒子创建时间，使粒子渐入效果更自然
                 setTimeout(() => {
                     particles.push(new Particle());
-                }, i * 20); // 每个粒子间隔20ms创建
+                }, i * 20); 
             }
         }, 500);
-        
-        // 连接粒子
         function connectParticles() {
             for (let a = 0; a < particles.length; a++) {
                 for (let b = a; b < particles.length; b++) {
                     const dx = particles[a].x - particles[b].x;
                     const dy = particles[a].y - particles[b].y;
                     const distance = Math.sqrt(dx * dx + dy * dy);
-                    
                     if (distance < 100) {
                         ctx.beginPath();
-                        // 线条透明度与粒子透明度关联
                         const minOpacity = Math.min(particles[a].opacity, particles[b].opacity);
                         ctx.strokeStyle = `rgba(150, 150, 255, ${minOpacity * (0.3 - distance/350)})`;
                         ctx.lineWidth = 0.5;
@@ -757,102 +656,64 @@
                 }
             }
         }
-        
-        // 动画循环
         function animate() {
             ctx.clearRect(0, 0, canvas.width, canvas.height);
-            
-            // 添加渐变背景效果，与开场动画保持一致
             const gradient = ctx.createLinearGradient(0, 0, canvas.width, canvas.height);
             gradient.addColorStop(0, 'rgba(10, 10, 26, 0.9)');
             gradient.addColorStop(0.5, 'rgba(26, 26, 58, 0.9)');
             gradient.addColorStop(1, 'rgba(10, 10, 26, 0.9)');
             ctx.fillStyle = gradient;
             ctx.fillRect(0, 0, canvas.width, canvas.height);
-            
-            // 重置阴影效果
             ctx.shadowBlur = 0;
             ctx.shadowColor = 'transparent';
-            
             particles.forEach(particle => {
                 particle.update();
                 particle.draw();
             });
-            
             connectParticles();
             requestAnimationFrame(animate);
         }
-        
         animate();
-        
-        // 鼠标交互效果
         let mouseX, mouseY;
-        
         window.addEventListener('mousemove', (e) => {
             mouseX = e.clientX;
             mouseY = e.clientY;
         });
-        
-        // 鼠标吸引粒子效果
         function mouseInteraction() {
             if (!mouseX || !mouseY) return;
-            
             particles.forEach(particle => {
                 const dx = particle.x - mouseX;
                 const dy = particle.y - mouseY;
                 const distance = Math.sqrt(dx * dx + dy * dy);
-                
                 if (distance < 150) {
                     const force = (150 - distance) / 150;
                     particle.x += dx * force * 0.01;
                     particle.y += dy * force * 0.01;
                 }
             });
-            
             requestAnimationFrame(mouseInteraction);
         }
-        
         mouseInteraction();
-        
-        // 开场动画JavaScript - 添加从子页面返回时跳过动画的功能
         document.addEventListener('DOMContentLoaded', function() {
-            // 检查是否是从子页面返回
             const skipAnimation = localStorage.getItem('skipIntroAnimation');
-            
-            // 如果需要跳过动画
             if (skipAnimation === 'true') {
-                // 立即隐藏intro动画
                 const introAnimation = document.querySelector('.intro-animation');
                 introAnimation.style.opacity = '0';
                 introAnimation.style.pointerEvents = 'none';
-                
-                // 立即显示canvas背景和主内容
                 const canvas = document.getElementById('canvas-background');
                 canvas.classList.add('fade-in');
                 canvas.style.zIndex = '-1';
-                
                 document.querySelector('.container').classList.add('fade-in');
-                
-                // 清除标志，下次直接访问时仍显示动画
                 localStorage.removeItem('skipIntroAnimation');
-                
-                // 不执行后续动画代码
                 return;
             }
-            
-            // 创建线条动画
             const linesContainer = document.getElementById('intro-lines');
             const lineCount = 15;
-            
-            // 创建随机线条
             for (let i = 0; i < lineCount; i++) {
                 const line = document.createElement('div');
                 line.className = 'intro-line';
-                
-                // 随机位置和方向
                 const isHorizontal = Math.random() > 0.5;
                 const delay = Math.random() * 0.5;
-                
                 if (isHorizontal) {
                     line.style.top = `${Math.random() * 100}%`;
                     line.style.left = 0;
@@ -865,32 +726,25 @@
                     line.style.height = '0%';
                     line.style.transform = 'rotate(90deg)';
                 }
-                
                 line.style.animation = isHorizontal 
                     ? `drawHorizontal 0.8s ease-in-out ${delay}s forwards`
                     : `drawVertical 0.8s ease-in-out ${delay}s forwards`;
-                
                 linesContainer.appendChild(line);
             }
-            
-            // 添加线条动画样式
             const style = document.createElement('style');
             style.textContent = `
                 @keyframes drawHorizontal {
                     0% { width: 0%; }
                     100% { width: 100%; }
                 }
-                
                 @keyframes drawVertical {
                     0% { height: 0%; }
                     100% { height: 100%; }
                 }
-                
                 @keyframes fadeOut {
                     0% { opacity: 1; }
                     100% { opacity: 0; pointer-events: none; }
                 }
-                
                 /* 线条淡出动画 */
                 @keyframes fadeOutLines {
                     0% { opacity: 1; transform: scale(1); }
@@ -899,51 +753,34 @@
                 }
             `;
             document.head.appendChild(style);
-            
-            // 启动粒子背景，但保持隐藏
             setTimeout(() => {
-                // 提前初始化canvas，让粒子动画准备就绪
                 const canvas = document.getElementById('canvas-background');
                 if (canvas.getContext) {
-                    // 粒子背景已经在页面加载时初始化，这里只是确保它准备就绪
                 }
             }, 1000);
-            
-            // 动画结束后平滑过渡到粒子背景
             setTimeout(function() {
-                // 先让线条元素平滑淡出
                 const lines = document.querySelectorAll('.intro-line');
                 lines.forEach((line, index) => {
                     setTimeout(() => {
                         line.style.animation = 'fadeOutLines 0.8s ease forwards';
-                    }, index * 50); // 错开线条淡出时间，创造流动感
+                    }, index * 50); 
                 });
-                
-                // 让s7ae文本缩小淡出
                 const introText = document.querySelector('.intro-text');
                 introText.style.animation = 'fadeOutLines 1s ease forwards';
-                
-                // 同时淡入粒子背景
                 setTimeout(() => {
                     document.getElementById('canvas-background').classList.add('fade-in');
                 }, 300);
-                
-                // 延迟淡出整个intro层并显示主内容
                 setTimeout(function() {
                     const introAnimation = document.querySelector('.intro-animation');
                     introAnimation.style.animation = 'fadeOut 0.3s ease forwards';
-                    
-                    // 显示主内容
                     setTimeout(function() {
                         document.querySelector('.container').classList.add('fade-in');
-                        // 将canvas置于背景层
                         document.getElementById('canvas-background').style.zIndex = '-1';
                     }, 200);
-                }, 500); // 提前开始过渡，以实现平滑衔接
-            }, 1000); // 1秒后开始过渡，加快动画节奏
+                }, 500); 
+            }, 1000); 
         });
     </script>
-    <!-- 动画脚本 -->
     <script src="liquidglass.js"></script>
 </body>
 </html>

@@ -8,7 +8,6 @@
     <link rel="stylesheet" href="../styles.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/8.4.5/swiper-bundle.min.css">
-    <!-- 艺术字体引入 -->
     <link href="https://fonts.googleapis.com/css2?family=Audiowide&family=Monoton&family=Orbitron:wght@400;500;700;900&display=swap" rel="stylesheet">
     <style>
         #canvas-background {
@@ -39,14 +38,12 @@
             background-size: contain;
             display: inline-block;
         }
-        
         .logo a {
             color: white;
             font-size: 28px;
             font-weight: 400;
             font-family: 'Audiowide', cursive;
             text-decoration: none;
-            /* 苹果风格玻璃效果 */
             text-shadow: 0 0 10px rgba(0, 245, 255, 0.9),
                          0 0 20px rgba(0, 245, 255, 0.7);
             letter-spacing: 2px;
@@ -92,14 +89,9 @@
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
             transform: translateY(-1px);
         }
-        
-        /* 高级动效样式 */
-        /* 高级过渡效果 */
         * {
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
-        
-        /* 高级背景效果 */
         .advanced-bg {
             position: fixed;
             top: 0;
@@ -110,7 +102,6 @@
             background: linear-gradient(135deg, #0a0a1a 0%, #1a1a3a 50%, #0a0a1a 100%);
             overflow: hidden;
         }
-        
         .advanced-bg::before {
             content: '';
             position: absolute;
@@ -121,18 +112,14 @@
             background: radial-gradient(circle, rgba(0, 245, 255, 0.1) 0%, rgba(138, 43, 226, 0.05) 50%, transparent 70%);
             animation: rotate 20s linear infinite;
         }
-        
         @keyframes rotate {
             0% { transform: rotate(0deg); }
             100% { transform: rotate(360deg); }
         }
-        
-        /* 高级霓虹发光效果 */
         .neon-glow {
             position: relative;
             overflow: hidden;
         }
-        
         .neon-glow::before {
             content: '';
             position: absolute;
@@ -143,18 +130,14 @@
             background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
             animation: neon-sweep 3s infinite;
         }
-        
         @keyframes neon-sweep {
             0% { left: -100%; }
             50%, 100% { left: 100%; }
         }
-        
-        /* 高级液体填充效果 */
         .liquid-fill {
             position: relative;
             overflow: hidden;
         }
-        
         .liquid-fill::after {
             content: '';
             position: absolute;
@@ -165,20 +148,16 @@
             background: linear-gradient(0deg, rgba(0, 245, 255, 0.3), transparent);
             animation: liquid-rise 4s ease-in-out infinite alternate;
         }
-        
         @keyframes liquid-rise {
             0% { height: 0; }
             100% { height: 100%; }
         }
-        
-        /* 高级按钮效果 */
         .btn-advanced {
             position: relative;
             overflow: hidden;
             z-index: 1;
             transition: all 0.3s ease;
         }
-        
         .btn-advanced::before {
             content: '';
             position: absolute;
@@ -191,12 +170,10 @@
             transform: translate(-50%, -50%);
             transition: width 0.6s, height 0.6s;
         }
-        
         .btn-advanced:hover::before {
             width: 300px;
             height: 300px;
         }
-        
         .ripple {
             position: absolute;
             border-radius: 50%;
@@ -205,15 +182,12 @@
             animation: ripple-animation 0.6s ease-out;
             z-index: 0;
         }
-        
         @keyframes ripple-animation {
             to {
                 transform: scale(4);
                 opacity: 0;
             }
         }
-        
-        /* 高级卡片效果 */
         .card-advanced {
             position: relative;
             overflow: hidden;
@@ -226,7 +200,6 @@
             transform-style: preserve-3d;
             perspective: 1000px;
         }
-        
         .card-advanced::before {
             content: '';
             position: absolute;
@@ -238,23 +211,18 @@
             transform: translateX(-100%);
             transition: transform 0.6s;
         }
-        
         .card-advanced:hover::before {
             transform: translateX(100%);
         }
-        
         .card-advanced:hover {
             transform: translateY(-5px);
             box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
         }
-        
-        /* 高级文本效果 */
         .text-advanced {
             position: relative;
             display: inline-block;
             transition: all 0.3s ease;
         }
-        
         .text-advanced::after {
             content: '';
             position: absolute;
@@ -265,12 +233,9 @@
             background: linear-gradient(90deg, #00f5ff, #8a2be2);
             transition: width 0.3s ease;
         }
-        
         .text-advanced:hover::after {
             width: 100%;
         }
-        
-        /* 高级导航栏效果 */
         .nav-advanced {
             position: fixed;
             top: 0;
@@ -282,27 +247,20 @@
             background: rgba(10, 10, 26, 0.8);
             border-bottom: 1px solid rgba(255, 255, 255, 0.1);
         }
-        
-        /* 高级滚动条效果 */
         .scrollbar-advanced::-webkit-scrollbar {
             width: 8px;
         }
-        
         .scrollbar-advanced::-webkit-scrollbar-track {
             background: rgba(255, 255, 255, 0.1);
             border-radius: 4px;
         }
-        
         .scrollbar-advanced::-webkit-scrollbar-thumb {
             background: linear-gradient(45deg, #00f5ff, #8a2be2);
             border-radius: 4px;
         }
-        
         .scrollbar-advanced::-webkit-scrollbar-thumb:hover {
             background: linear-gradient(45deg, #00d4cc, #7a22d2);
         }
-        
-        /* 高级滚动指示器 */
         .scroll-indicator {
             position: fixed;
             top: 0;
@@ -312,43 +270,29 @@
             z-index: 1001;
             transition: width 0.2s ease;
         }
-        
-        /* 高级悬停效果 */
         .hover-tilt {
             transition: transform 0.3s ease;
         }
-        
         .text-hover-glow:hover {
             text-shadow: 0 0 10px rgba(0, 245, 255, 0.8);
         }
-        
         .magnetic-hover {
             position: relative;
         }
-        
         .magnetic-text {
             display: inline-block;
             transition: transform 0.2s ease;
         }
-        
-        /* 为固定导航栏添加顶部间距 */
         .project-hero {
             padding-top: 120px;
             margin-top: 0;
         }
-        
-        /* 确保整个内容区域有足够的顶部间距 */
         .container > section:first-of-type {
             padding-top: 120px;
         }
-        
-        /* 为固定导航栏添加顶部间距 */
         .project-hero {
             padding-top: 100px;
         }
-
-        
-        /* 更新日志卡片样式 - 增强设计感 */
         .update-log-card {
             margin-top: 50px;
             margin-bottom: 30px;
@@ -365,8 +309,6 @@
             overflow: hidden;
             transition: all 0.3s ease;
         }
-        
-        /* 渐变边框效果 */
         .update-log-card::before {
             content: '';
             position: absolute;
@@ -385,14 +327,11 @@
             pointer-events: none;
             animation: gradient-shift 4s ease infinite;
         }
-        
         @keyframes gradient-shift {
             0% { background-position: 0% 50%; }
             50% { background-position: 100% 50%; }
             100% { background-position: 0% 50%; }
         }
-        
-        /* 发光顶部线条 */
         .update-log-card::after {
             content: '';
             position: absolute;
@@ -404,13 +343,10 @@
             box-shadow: 0 0 10px #00f5ff, 0 0 20px rgba(0, 245, 255, 0.5);
             animation: glow-pulse 2s ease-in-out infinite;
         }
-        
         @keyframes glow-pulse {
             0%, 100% { opacity: 0.8; }
             50% { opacity: 1; }
         }
-        
-        /* 标题样式 */
         .update-log-card h3 {
             color: #ffffff;
             font-size: 22px;
@@ -424,20 +360,16 @@
             position: relative;
             z-index: 2;
         }
-        
         .update-log-card h3 i {
             margin-right: 10px;
             color: #00f5ff;
             font-size: 24px;
             animation: spin-icon 4s linear infinite;
         }
-        
         @keyframes spin-icon {
             0% { transform: rotate(0deg); }
             100% { transform: rotate(360deg); }
         }
-        
-        /* 内容区域 */
         .update-log-content {
             max-height: 300px;
             overflow-y: auto;
@@ -445,24 +377,18 @@
             position: relative;
             z-index: 1;
         }
-        
-        /* 滚动条美化 */
         .update-log-content::-webkit-scrollbar {
             width: 6px;
         }
-        
         .update-log-content::-webkit-scrollbar-track {
             background: rgba(255, 255, 255, 0.05);
             border-radius: 3px;
         }
-        
         .update-log-content::-webkit-scrollbar-thumb {
             background: linear-gradient(45deg, #00f5ff, #8a2be2);
             border-radius: 3px;
             box-shadow: 0 0 10px rgba(0, 245, 255, 0.5);
         }
-        
-        /* 更新条目样式 */
         .update-entry {
             margin-bottom: 20px;
             padding-bottom: 20px;
@@ -471,11 +397,9 @@
             position: relative;
             overflow: hidden;
         }
-        
         .update-entry:hover {
             transform: translateX(5px);
         }
-        
         .update-entry:hover::before {
             content: '';
             position: absolute;
@@ -486,14 +410,11 @@
             background: linear-gradient(to bottom, #00f5ff, #8a2be2);
             box-shadow: 0 0 10px rgba(0, 245, 255, 0.5);
         }
-        
         .update-entry:last-child {
             border-bottom: none;
             margin-bottom: 0;
             padding-bottom: 0;
         }
-        
-        /* 日期样式 */
         .update-date {
             color: #00f5ff;
             font-size: 14px;
@@ -508,24 +429,19 @@
             border-radius: 15px;
             border: 1px solid rgba(0, 245, 255, 0.2);
         }
-        
-        /* 详情样式 */
         .update-details {
             color: rgba(255, 255, 255, 0.8);
             line-height: 1.6;
             padding-left: 20px;
         }
-        
         .update-details p {
             margin: 5px 0;
             position: relative;
             transition: color 0.2s ease;
         }
-        
         .update-details p:hover {
             color: #ffffff;
         }
-        
         .update-details p::before {
             content: '•';
             color: #8a2be2;
@@ -534,13 +450,10 @@
             font-size: 18px;
             animation: pulse-dot 2s ease-in-out infinite;
         }
-        
         @keyframes pulse-dot {
             0%, 100% { opacity: 0.6; transform: scale(1); }
             50% { opacity: 1; transform: scale(1.2); }
         }
-        
-        /* 悬浮光晕效果 */
         .update-log-card:hover {
             box-shadow: 
                 0 12px 40px rgba(0, 0, 0, 0.15),
@@ -548,13 +461,10 @@
                 inset 0 1px 0 rgba(255, 255, 255, 0.1);
             transform: translateY(-2px);
         }
-        
-        /* 响应式调整 */
         @media (max-width: 768px) {
             .update-log-card {
                 padding: 20px;
             }
-            
             .update-log-card h3 {
                 font-size: 18px;
             }
@@ -577,7 +487,6 @@
                 </ul>
             </div>
         </header>
-        
         <section class="project-hero scroll-animate">
             <div style="flex:1">
                 <h1 class="scroll-animate magnetic-text text-advanced">Evolution.GS</h1>
@@ -598,7 +507,6 @@
                 <img src="../assets/images/EVO.png" alt="Evolution.GS">
             </div>
         </section>
-        
         <section style="margin-top:30px">
             <h2 class="magnetic-text text-advanced">项目亮点</h2>
             <ul>
@@ -607,8 +515,6 @@
                 <li class="text-advanced">多位国内外著名游戏玩家反复打磨builder</li>
             </ul>
         </section>
-        
-        <!-- 更新日志卡片 -->
         <div class="update-log-card">
             <h3><i class="ri-refresh-line"></i>更新日志</h3>
             <div class="update-log-content">
@@ -654,7 +560,6 @@
                 </div>
             </div>
         </div>
-        
         <div class="footer">© 2025 s7ae 网络科技工作室</div>
     </div>
     <script src="../liquidglass.js"></script>

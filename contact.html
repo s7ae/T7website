@@ -8,7 +8,6 @@
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/8.4.5/swiper-bundle.min.css">
-    <!-- 艺术字体引入 -->
     <link href="https://fonts.googleapis.com/css2?family=Audiowide&family=Monoton&family=Orbitron:wght@400;500;700;900&display=swap" rel="stylesheet">
     <style>
         #canvas-background {
@@ -39,14 +38,12 @@
             background-size: contain;
             display: inline-block;
         }
-        
         .logo a {
             color: white;
             font-size: 28px;
             font-weight: 400;
             font-family: 'Audiowide', cursive;
             text-decoration: none;
-            /* 苹果风格玻璃效果 */
             text-shadow: 0 0 10px rgba(0, 245, 255, 0.9),
                          0 0 20px rgba(0, 245, 255, 0.7);
             letter-spacing: 2px;
@@ -92,7 +89,6 @@
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
             transform: translateY(-1px);
         }
-        
         .contact-card {
             background: rgba(255, 255, 255, 0.04);
             border-radius: 16px;
@@ -147,14 +143,12 @@
                 </ul>
             </div>
         </header>
-        
         <section class="hero">
             <div class="hero__left">
                 <h1 class="magnetic-text text-advanced">联系我们</h1>
                 <div class="lead text-advanced">无论您有任何问题或需求，都欢迎与我们联系</div>
             </div>
         </section>
-        
         <section id="contact" style="margin-top: 40px; margin-bottom: 60px;">
             <div class="contact-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; max-width: 650px; margin: 0 auto;">
                 <div class="contact-card card-advanced hover-tilt">
@@ -169,7 +163,6 @@
                 </div>
             </div>
         </section>
-        
         <section style="margin-bottom: 60px; text-align: center; max-width: 800px; margin-left: auto; margin-right: auto;">
             <h2 style="font-size: 24px; margin-bottom: 20px;" class="magnetic-text text-advanced">立即与我们联系</h2>
             <p style="margin-bottom: 30px; opacity: 0.8; line-height: 1.6;" class="text-advanced">有任何问题或合作意向？请通过Telegram或Discord与我们联系，我们将尽快回复您。</p>
@@ -178,25 +171,17 @@
                 <a class="btn btn--primary btn-advanced" href="https://discord.com/download" target="_blank">下载Discord</a>
             </div>
         </section>
-        
         <div class="footer">© 2025 s7ae 网络科技工作室</div>
     </div>
-    
     <script>
-        // 动态背景粒子效果
         const canvas = document.getElementById('canvas-background');
         const ctx = canvas.getContext('2d');
-        
-        // 设置canvas尺寸
         function setCanvasSize() {
             canvas.width = window.innerWidth;
             canvas.height = window.innerHeight;
         }
-        
         setCanvasSize();
         window.addEventListener('resize', setCanvasSize);
-        
-        // 粒子类
         class Particle {
             constructor() {
                 this.x = Math.random() * canvas.width;
@@ -206,7 +191,6 @@
                 this.speedY = Math.random() * 0.7 - 0.25;
                 this.color = this.getRandomColor();
             }
-            
             getRandomColor() {
                 const colors = [
                     'rgba(100, 150, 255, 0.8)',
@@ -216,16 +200,12 @@
                 ];
                 return colors[Math.floor(Math.random() * colors.length)];
             }
-            
             update() {
                 this.x += this.speedX;
                 this.y += this.speedY;
-                
-                // 边界检测
                 if (this.x < 0 || this.x > canvas.width) this.speedX *= -1;
                 if (this.y < 0 || this.y > canvas.height) this.speedY *= -1;
             }
-            
             draw() {
                 ctx.beginPath();
                 ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
@@ -233,23 +213,17 @@
                 ctx.fill();
             }
         }
-        
-        // 创建粒子
         const particles = [];
         const particleCount = 80;
-        
         for (let i = 0; i < particleCount; i++) {
             particles.push(new Particle());
         }
-        
-        // 连接粒子
         function connectParticles() {
             for (let a = 0; a < particles.length; a++) {
                 for (let b = a; b < particles.length; b++) {
                     const dx = particles[a].x - particles[b].x;
                     const dy = particles[a].y - particles[b].y;
                     const distance = Math.sqrt(dx * dx + dy * dy);
-                    
                     if (distance < 100) {
                         ctx.beginPath();
                         ctx.strokeStyle = `rgba(150, 150, 255, ${0.3 - distance/350})`;
@@ -261,57 +235,41 @@
                 }
             }
         }
-        
-        // 动画循环
         function animate() {
             ctx.clearRect(0, 0, canvas.width, canvas.height);
-            
-            // 添加渐变背景效果
             const gradient = ctx.createLinearGradient(0, 0, canvas.width, canvas.height);
             gradient.addColorStop(0, 'rgba(10, 10, 26, 0.9)');
             gradient.addColorStop(0.5, 'rgba(26, 26, 58, 0.9)');
             gradient.addColorStop(1, 'rgba(10, 10, 26, 0.9)');
             ctx.fillStyle = gradient;
             ctx.fillRect(0, 0, canvas.width, canvas.height);
-            
             particles.forEach(particle => {
                 particle.update();
                 particle.draw();
             });
-            
             connectParticles();
             requestAnimationFrame(animate);
         }
-        
         animate();
-        
-        // 鼠标交互效果
         let mouseX, mouseY;
-        
         window.addEventListener('mousemove', (e) => {
             mouseX = e.clientX;
             mouseY = e.clientY;
         });
-        
-        // 鼠标吸引粒子效果
         function mouseInteraction() {
             if (!mouseX || !mouseY) return;
-            
             particles.forEach(particle => {
                 const dx = particle.x - mouseX;
                 const dy = particle.y - mouseY;
                 const distance = Math.sqrt(dx * dx + dy * dy);
-                
                 if (distance < 150) {
                     const force = (150 - distance) / 150;
                     particle.x += dx * force * 0.01;
                     particle.y += dy * force * 0.01;
                 }
             });
-            
             requestAnimationFrame(mouseInteraction);
         }
-        
         mouseInteraction();
     </script>
 </body>
