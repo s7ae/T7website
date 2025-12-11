@@ -731,3 +731,28 @@ body::-webkit-scrollbar-thumb:hover {
 ::-webkit-scrollbar-thumb:hover{background:var(--glass-hover)}
 ::selection{background:linear-gradient(135deg,rgba(124,92,255,0.3),rgba(95,255,197,0.3))}
 @media (max-width:900px){.hero{grid-template-columns:1fr;padding:20px 0}.project-hero{flex-direction:column}.project-hero img{width:100%}}
+
+/* 高亮卡片样式，用于李泽言卡片 */
+.highlight-card {
+    animation: highlight-pulse 3s ease-in-out 1;
+    position: relative;
+    z-index: 10;
+}
+
+@keyframes highlight-pulse {
+    0% {
+        box-shadow: 0 0 10px 5px rgba(124, 92, 255, 0.8), 0 0 20px 10px rgba(124, 92, 255, 0.5);
+        transform: scale(1);
+        border: 2px solid #7c5cff;
+    }
+    50% {
+        box-shadow: 0 0 20px 10px rgba(124, 92, 255, 0.8), 0 0 30px 15px rgba(124, 92, 255, 0.5);
+        transform: scale(1.03);
+        border: 3px solid #a38fff;
+    }
+    100% {
+        box-shadow: 0 0 10px 5px rgba(124, 92, 255, 0.8), 0 0 20px 10px rgba(124, 92, 255, 0.5);
+        transform: scale(1);
+        border: 2px solid #7c5cff;
+    }
+}

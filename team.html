@@ -508,7 +508,7 @@
                         <span class="tag text-hover-glow">思维设计</span>
                     </div>
                 </div>
-                <div class="card card-advanced hover-tilt">
+                <div class="card card-advanced hover-tilt" id="water">
                     <div class="card__avatar">
                         <div class="card__avatar-inner">
                             <img src="assets/TX/en7.jpg" alt="En7p头像" />
@@ -554,6 +554,24 @@
                         <span class="tag text-hover-glow">前端开发</span>
                         <span class="tag text-hover-glow">团队管理</span>
                         <span class="tag text-hover-glow">交互实现</span>
+                    </div>
+                </div>
+                <div class="card card-advanced hover-tilt" id="lizeyan">
+                    <div class="card__avatar">
+                        <div class="card__avatar-inner">
+                            <img src="assets/TX/lzy.png" alt="lzy头像" />
+                        </div>
+                    </div>
+                    <h3 class="text-advanced">李泽言</h3>
+                    <div class="card__title text-advanced">各游戏服务端专精</div>
+                    <p class="text-advanced">HvH地下皇帝，Fivem专业后端开发,武汉知名洞穴探索工作者</p>
+                    <div class="tags">
+                        <span class="tag text-hover-glow">Fivem服务端搭建、维护、开发</span>
+                        <span class="tag text-hover-glow">Fivem插件开发</span>
+                        <span class="tag text-hover-glow">武</span>
+                        <span class="tag text-hover-glow">汉</span>
+                        <span class="tag text-hover-glow">炮</span>
+                        <span class="tag text-hover-glow">王</span>
                     </div>
                 </div>
                 <div class="card card-advanced hover-tilt" style="position: relative;">
@@ -1085,7 +1103,42 @@
                 }
             }
             window.addEventListener('scroll', updateScrollIndicator);
+            
+            // 页面加载完成后检查URL锚点，如果是#lizeyan则高亮李泽言的卡片
+            window.addEventListener('load', function() {
+                // 先移除可能存在的高亮类
+                const allCards = document.querySelectorAll('.card');
+                allCards.forEach(card => {
+                    card.classList.remove('highlight-card');
+                });
+                
+                // 检查是否有#lizeyan锚点
+                if (window.location.hash === '#lizeyan') {
+                    setTimeout(() => {
+                        const lizeyanCard = document.getElementById('lizeyan');
+                        if (lizeyanCard) {
+                            // 移除默认的URL锚点影响
+                            history.replaceState(null, null, window.location.pathname);
+                            
+                            // 添加高亮类
+                            lizeyanCard.classList.add('highlight-card');
+                            
+                            // 平滑滚动到卡片位置，调整滚动边距
+                            const yOffset = -200; // 向上偏移200px，避免被固定头部遮挡
+                            const y = lizeyanCard.getBoundingClientRect().top + window.pageYOffset + yOffset;
+                            window.scrollTo({ top: y, behavior: 'smooth' });
+                            
+                            // 3秒后移除高亮效果
+                            setTimeout(() => {
+                                lizeyanCard.classList.remove('highlight-card');
+                            }, 3000);
+                        }
+                    }, 500);
+                }
+            });
         }
+        initAdvancedEffects();
+        
         initAdvancedEffects();
     </script>
 </body>
