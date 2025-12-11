@@ -1,0 +1,288 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>公告 · s7ae 网络科技工作室</title>
+    <meta name="description" content="s7ae 网络科技工作室 — 专注软硬件定制开发" />
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/8.4.5/swiper-bundle.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Audiowide&family=Monoton&family=Orbitron:wght@400;500;700;900&display=swap" rel="stylesheet">
+    <style>
+        #canvas-background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: linear-gradient(135deg, #0a0a1a 0%, #1a1a3a 50%, #0a0a1a 100%);
+        }
+        .container {
+            position: relative;
+            z-index: 1;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 30px 0;
+            position: relative;
+            z-index: 10;
+        }
+        .logo {
+            background-size: contain;
+            display: inline-block;
+        }
+        .logo a {
+            color: white;
+            font-size: 28px;
+            font-weight: 400;
+            font-family: 'Audiowide', cursive;
+            text-decoration: none;
+            text-shadow: 0 0 10px rgba(0, 245, 255, 0.9),
+                         0 0 20px rgba(0, 245, 255, 0.7);
+            letter-spacing: 2px;
+            padding: 10px 15px;
+            border-radius: 12px;
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.04);
+            backdrop-filter: blur(30px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.03);
+            transition: all 0.2s ease;
+        }
+        .logo a:hover {
+            background: rgba(255, 255, 255, 0.06);
+            border-color: rgba(255, 255, 255, 0.08);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+        }
+        .menu ul {
+            display: flex;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+        .menu ul li {
+            margin-left: 30px;
+        }
+        .menu ul li a {
+            color: white;
+            text-decoration: none;
+            font-size: 16px;
+            transition: all 0.2s ease;
+            padding: 10px 20px;
+            border-radius: 12px;
+            background: rgba(255, 255, 255, 0.04);
+            backdrop-filter: blur(30px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            display: inline-block;
+            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.03);
+        }
+        .menu ul li a:hover {
+            background: rgba(255, 255, 255, 0.06);
+            border-color: rgba(255, 255, 255, 0.08);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+            transform: translateY(-1px);
+        }
+        .announcement-card {
+            background: rgba(255, 255, 255, 0.04);
+            border-radius: 16px;
+            padding: 40px;
+            backdrop-filter: blur(30px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.03);
+            transition: all 0.2s ease;
+            position: relative;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .announcement-card:hover {
+            background: rgba(255, 255, 255, 0.06);
+            border-color: rgba(255, 255, 255, 0.08);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+            transform: translateY(-2px);
+        }
+        .announcement-title {
+            font-size: 32px;
+            font-weight: 600;
+            margin-bottom: 24px;
+            color: #fff;
+            text-align: center;
+            font-family: 'Audiowide', cursive;
+            text-shadow: 0 0 10px rgba(124, 92, 255, 0.9),
+                         0 0 20px rgba(124, 92, 255, 0.7);
+        }
+        .announcement-content {
+            color: #eaf0ff;
+            line-height: 1.8;
+            font-size: 16px;
+            opacity: 0.9;
+        }
+        .announcement-content p {
+            margin-bottom: 20px;
+        }
+        .announcement-content strong {
+            color: #7c5cff;
+            font-weight: 600;
+        }
+        .announcement-date {
+            text-align: center;
+            color: #8a9fff;
+            font-size: 14px;
+            margin-bottom: 30px;
+            opacity: 0.7;
+        }
+    </style>
+</head>
+<body class="scrollbar-custom scrollbar-advanced">
+    <canvas id="canvas-background"></canvas>
+    <div class="container">
+        <header class="nav-advanced">
+            <div class="logo">
+                <a href="index.html" onclick="localStorage.setItem('skipIntroAnimation', 'true');" class="magnetic-hover text-advanced">s7ae</a>
+            </div>
+            <div class="menu">
+                <ul>
+                    <li><a href="index.html" onclick="localStorage.setItem('skipIntroAnimation', 'true');" class="magnetic-hover text-hover-glow text-advanced">首页</a></li>
+                    <li><a href="projects.html" class="magnetic-hover text-hover-glow text-advanced">项目</a></li>
+                    <li><a href="team.html" class="magnetic-hover text-hover-glow text-advanced">鸣谢</a></li>
+                    <li><a href="contact.html" class="magnetic-hover text-hover-glow text-advanced">联系我们</a></li>
+                </ul>
+            </div>
+        </header>
+        <section class="hero">
+            <div class="hero__left">
+                <h1 class="magnetic-text text-advanced">重要公告</h1>
+                <div class="lead text-advanced">关于玩偶服务器的网络攻击事件说明</div>
+            </div>
+        </section>
+        <section id="announcement" style="margin-top: 40px; margin-bottom: 60px;">
+            <div class="announcement-card card-advanced hover-tilt">
+                <div class="announcement-date">2025年公告</div>
+                <div class="announcement-title">关于玩偶服务器攻击事件的声明</div>
+                <div class="announcement-content">
+                    <p>关于玩偶服务器</p>
+                    <p>在昨天晚上的时候，玩偶那边的人对我们进行了一次算得上是“爆破”的行动，事情的动机也很简单，谁不想一口吃天下呢？安了一个叫做“拉人”的帽子，这个帽子是真是假我不知道，因为我确实在那段时间没有参与任何关于fivem的事情，但我想说的是，“恋爱服务器（以下简称恋爱服）“遭到伪造型udp分布式拒绝攻击是板上钉钉的事情，运营商那边服务器后台的日志、防火墙的日志都可以证明这一点</p>
+                    <p><strong>并且！</strong></p>
+                    <p>这种人被拉到恋爱服官方群里是什么意思呢？法网恢恢疏而不漏，可能你的攻击也就几百Gbps，但现在各路大厂的标配防御还在20-100Gbps，远远超过了这些大厂对网络攻击的预测量级，可以说是有组织有预谋甚至是有纪律的网络攻击以及网络暴力行为，我觉得这种行为不算是合法的吧。</p>
+                    <p>现在还有传闻说恋爱服发起了反击，被群友戏称为“欧美打法“，对于全程目观所有管理员行为的我来说，这也就是开开玩笑了，我们自己服务器被攻击还解决不了呢，哪来的能力去攻击人家服务器啊，我们买一台枣庄服务器都要考虑再三，哪来的钱一口气买那么多服务器做udp伪造攻击呢？</p>
+                    <p><strong>但是！</strong></p>
+                    <div style="text-align: center; margin: 20px 0;">
+                        <img src="assets/images/DDOS.png" alt="DDOS攻击示意图" style="max-width: 100%; height: auto; border-radius: 8px; box-shadow: 0 0 10px rgba(124, 92, 255, 0.3);">
+                    </div>
+                    <p>“欧美打法“没有说错！对于服务器内存在的违规行为，包括但不限于外挂等各种损害恋爱服玩家游戏体验、合法权益的事情，我们绝对保持一贯的”欧美打法“，贯彻”0容忍“、“处理快”、“处理准”、“处理好”的做事风格，管理层主动营造一个足够好的游戏环境给玩家，</p>
+                    <p>关于事情的全貌在我以前在某游戏圈子内遇到的有一个相差无几的例子可以举出来：</p>
+                    <p>想一口吃天下->想到攻击服务器->攻击->怕被盯上开始胡扯->然后自己关服找水军造谣->备份跑路->下次换个名字回来继续</p>
+                    <p>我觉得对于fivem这样一个模拟现实的游戏，一个服务器就是玩家们的一个家，谁也不想让自己的家园乌烟瘴气的，抵制垃圾服务器从当下开始，选择一个适合自己的真正好的服务器才能让你玩的更舒服。</p>
+                    <p>恋爱服不一定是最适合你不一定是最好的，我也不是在给恋爱又一次打广告引流，我只是愿天下所有想开开心心玩游戏的可爱的玩家们，能找到一个真正好的服务器，而不是恶意竞争！歪门邪道！</p>
+                </div>
+            </div>
+        </section>
+        <div class="footer">© 2025 s7ae 网络科技工作室</div>
+    </div>
+    <script>
+        const canvas = document.getElementById('canvas-background');
+        const ctx = canvas.getContext('2d');
+        function setCanvasSize() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+        setCanvasSize();
+        window.addEventListener('resize', setCanvasSize);
+        class Particle {
+            constructor() {
+                this.x = Math.random() * canvas.width;
+                this.y = Math.random() * canvas.height;
+                this.size = Math.random() * 5 + 1;
+                this.speedX = Math.random() * 0.7 - 0.25;
+                this.speedY = Math.random() * 0.7 - 0.25;
+                this.color = this.getRandomColor();
+            }
+            getRandomColor() {
+                const colors = [
+                    'rgba(100, 150, 255, 0.8)',
+                    'rgba(150, 100, 255, 0.8)',
+                    'rgba(255, 100, 200, 0.8)',
+                    'rgba(100, 255, 200, 0.8)'
+                ];
+                return colors[Math.floor(Math.random() * colors.length)];
+            }
+            update() {
+                this.x += this.speedX;
+                this.y += this.speedY;
+                if (this.x < 0 || this.x > canvas.width) this.speedX *= -1;
+                if (this.y < 0 || this.y > canvas.height) this.speedY *= -1;
+            }
+            draw() {
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fillStyle = this.color;
+                ctx.fill();
+            }
+        }
+        const particles = [];
+        const particleCount = 80;
+        for (let i = 0; i < particleCount; i++) {
+            particles.push(new Particle());
+        }
+        function connectParticles() {
+            for (let a = 0; a < particles.length; a++) {
+                for (let b = a; b < particles.length; b++) {
+                    const dx = particles[a].x - particles[b].x;
+                    const dy = particles[a].y - particles[b].y;
+                    const distance = Math.sqrt(dx * dx + dy * dy);
+                    if (distance < 100) {
+                        ctx.beginPath();
+                        ctx.strokeStyle = `rgba(150, 150, 255, ${0.3 - distance/350})`;
+                        ctx.lineWidth = 0.5;
+                        ctx.moveTo(particles[a].x, particles[a].y);
+                        ctx.lineTo(particles[b].x, particles[b].y);
+                        ctx.stroke();
+                    }
+                }
+            }
+        }
+        function animate() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            const gradient = ctx.createLinearGradient(0, 0, canvas.width, canvas.height);
+            gradient.addColorStop(0, 'rgba(10, 10, 26, 0.9)');
+            gradient.addColorStop(0.5, 'rgba(26, 26, 58, 0.9)');
+            gradient.addColorStop(1, 'rgba(10, 10, 26, 0.9)');
+            ctx.fillStyle = gradient;
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            particles.forEach(particle => {
+                particle.update();
+                particle.draw();
+            });
+            connectParticles();
+            requestAnimationFrame(animate);
+        }
+        animate();
+        let mouseX, mouseY;
+        window.addEventListener('mousemove', (e) => {
+            mouseX = e.clientX;
+            mouseY = e.clientY;
+        });
+        function mouseInteraction() {
+            if (!mouseX || !mouseY) return;
+            particles.forEach(particle => {
+                const dx = particle.x - mouseX;
+                const dy = particle.y - mouseY;
+                const distance = Math.sqrt(dx * dx + dy * dy);
+                if (distance < 150) {
+                    const force = (150 - distance) / 150;
+                    particle.x += dx * force * 0.01;
+                    particle.y += dy * force * 0.01;
+                }
+            });
+            requestAnimationFrame(mouseInteraction);
+        }
+        mouseInteraction();
+    </script>
+</body>
+</html>
