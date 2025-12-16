@@ -1,0 +1,826 @@
+query={"key":"A4LBZ-67BWD-3GS4B-H7HXV-CFMIV-LIBUC","referer":"myapp"};window._DEFAULT_CITY={"module":"geolocation","type":"ip","adcode":370700,"nation":"中国","province":"山东省","city":"潍坊市","district":"","addr":"","lat":36.70686,"lng":119.16176,"accuracy":10000,"ip":"223.104.195.92"};
+window.qq = window.qq || {};
+qq.maps = qq.maps || {};
+window.soso || (window.soso = qq);
+soso.maps || (soso.maps = qq.maps);
+
+!function(){
+!function(){var n=50,t=25,e={},r=[].slice,a={},c=function(n,t,r,c){var o=a[n];o||(o=a[n]={}),o[t]=o[t]||[],o[t].push({func:r,context:c||e})},o=function(n,t,r,a){var o=function(){return e.off(n,t,o),r.apply(a||e,arguments)};c(n,t,o,a)},f=function(e,c){if(a[e]&&a[e][c]&&a[e][c].length){for(var o=a[e][c],f=[],i=o.length;i--;)f.push({handler:o[i],args:r.call(arguments,1)});!function(){var e=+new Date;do{var r=f.shift(),a=r.handler;try{a.func.apply(a.context,r.args)}catch(c){}}while(f.length&&+new Date-e<n);f.length>0&&setTimeout(arguments.callee,t)}()}},i=function(n,t,r,c){if(c=c||e,a[n]&&a[n][t]&&a[n][t].length)for(var o,f=a[n][t],i=f.length;i--;)o=f[i],o.func===r&&o.context===c&&f.splice(i,1)};e.on=c,e.once=o,e.trigger=f,e.off=i,window.listener=window.listener||e}();;
+!function(e){"use strict";function t(){}function n(e,t){for(var n=e.length;n--;)if(e[n].listener===t)return n;return-1}function r(e){return function(){return this[e].apply(this,arguments)}}function i(e){return"function"==typeof e||e instanceof RegExp?!0:e&&"object"==typeof e?i(e.listener):!1}var s=t.prototype,o=e.EventEmitter;s.getListeners=function(e){var t,n,r=this._getEvents();if(e instanceof RegExp){t={};for(n in r)r.hasOwnProperty(n)&&e.test(n)&&(t[n]=r[n])}else t=r[e]||(r[e]=[]);return t},s.flattenListeners=function(e){var t,n=[];for(t=0;t<e.length;t+=1)n.push(e[t].listener);return n},s.getListenersAsObject=function(e){var t,n=this.getListeners(e);return n instanceof Array&&(t={},t[e]=n),t||n},s.addListener=function(e,t){if(!i(t))throw new TypeError("listener must be a function");var r,s=this.getListenersAsObject(e),o="object"==typeof t;for(r in s)s.hasOwnProperty(r)&&-1===n(s[r],t)&&s[r].push(o?t:{listener:t,once:!1});return this},s.on=r("addListener"),s.addOnceListener=function(e,t){return this.addListener(e,{listener:t,once:!0})},s.once=r("addOnceListener"),s.defineEvent=function(e){return this.getListeners(e),this},s.defineEvents=function(e){for(var t=0;t<e.length;t+=1)this.defineEvent(e[t]);return this},s.removeListener=function(e,t){var r,i,s=this.getListenersAsObject(e);for(i in s)s.hasOwnProperty(i)&&(r=n(s[i],t),-1!==r&&s[i].splice(r,1));return this},s.off=r("removeListener"),s.addListeners=function(e,t){return this.manipulateListeners(!1,e,t)},s.removeListeners=function(e,t){return this.manipulateListeners(!0,e,t)},s.manipulateListeners=function(e,t,n){var r,i,s=e?this.removeListener:this.addListener,o=e?this.removeListeners:this.addListeners;if("object"!=typeof t||t instanceof RegExp)for(r=n.length;r--;)s.call(this,t,n[r]);else for(r in t)t.hasOwnProperty(r)&&(i=t[r])&&("function"==typeof i?s.call(this,r,i):o.call(this,r,i));return this},s.removeEvent=function(e){var t,n=typeof e,r=this._getEvents();if("string"===n)delete r[e];else if(e instanceof RegExp)for(t in r)r.hasOwnProperty(t)&&e.test(t)&&delete r[t];else delete this._events;return this},s.removeAllListeners=r("removeEvent"),s.emitEvent=function(e,t){var n,r,i,s,o,u=this.getListenersAsObject(e);for(s in u)if(u.hasOwnProperty(s))for(n=u[s].slice(0),i=0;i<n.length;i++)r=n[i],r.once===!0&&this.removeListener(e,r.listener),o=r.listener.apply(this,t||[]),o===this._getOnceReturnValue()&&this.removeListener(e,r.listener);return this},s.trigger=r("emitEvent"),s.emit=function(e){var t=Array.prototype.slice.call(arguments,1);return this.emitEvent(e,t)},s.setOnceReturnValue=function(e){return this._onceReturnValue=e,this},s._getOnceReturnValue=function(){return this.hasOwnProperty("_onceReturnValue")?this._onceReturnValue:!0},s._getEvents=function(){return this._events||(this._events={})},t.noConflict=function(){return e.EventEmitter=o,t},"function"==typeof define&&define.amd?define(function(){return t}):"object"==typeof module&&module.exports?module.exports=t:e.EventEmitter=t}(this||{});var require,define;!function(e){if(!require){var t=document.getElementsByTagName("head")[0],n={},r={},i={},s={},o={},u={},a=function(e,n){for(var r=document.createDocumentFragment(),i=0,o=e.length;o>i;i++){var u=e[i].id,a=e[i].url;if(!(a in s)){s[a]=!0;var c=document.createElement("script");n&&!function(e,t){var r=setTimeout(function(){n(t)},require.timeout);e.onerror=function(){clearTimeout(r),n(t)};var i=function(){clearTimeout(r)};"onload"in e?e.onload=i:e.onreadystatechange=function(){("loaded"===this.readyState||"complete"===this.readyState)&&i()}}(c,u),c.type="text/javascript",c.src=a,r.appendChild(c)}}t.appendChild(r)},c=function(e,t,r){for(var i=[],s=0,c=e.length;c>s;s++){var f=e[s],l=n[f]||(n[f]=[]);l.push(t);var h,p=o[f]||o[f+".js"]||{},v=p.pkg;h=v?u[v].url||u[v].uri:p.url||p.uri||f,i.push({id:f,url:h})}a(i,r)};define=function(e,t){e=e.replace(/\.js$/i,""),r[e]=t;var i=n[e];if(i){for(var s=0,o=i.length;o>s;s++)i[s]();delete n[e]}},require=function(e){if(e&&e.splice)return require.async.apply(this,arguments);e=require.alias(e);var t=i[e];if(t)return t.exports;var n=r[e];if(!n)throw"[ModJS] Cannot find module `"+e+"`";t=i[e]={exports:{},eventEmitter:this.__EventEmitter||(this.__EventEmitter=new EventEmitter)};var s="function"==typeof n?n.apply(t,[require,t.exports,t]):n;return s&&(t.exports=s),t.exports},require.async=function(t,n,i){function s(e){for(var t,n=0,i=e.length;i>n;n++){var u=require.alias(e[n]);u in a||(a[u]=!0,u in r?(t=o[u]||o[u+".js"],t&&"deps"in t&&s(t.deps)):(l.push(u),f++,t=o[u]||o[u+".js"],t&&"deps"in t&&s(t.deps)))}}function u(){if(0===f--){for(var r=[],i=0,s=t.length;s>i;i++)r[i]=require(t[i]);n&&n.apply(e,r)}}"string"==typeof t&&(t=[t]);var a={},f=0,l=[];s(t),c(l,u,i),u()},require.ensure=function(e,t){require.async(e,function(){t&&t.call(this,require)})},require.resourceMap=function(e){var t,n;n=e.res;for(t in n)n.hasOwnProperty(t)&&(o[t]=n[t]);n=e.pkg;for(t in n)n.hasOwnProperty(t)&&(u[t]=n[t])},require.loadJs=function(e){if(!(e in s)){s[e]=!0;var n=document.createElement("script");n.type="text/javascript",n.src=e,t.appendChild(n)}},require.loadCss=function(e){if(e.content){var n=document.createElement("style");n.type="text/css",n.styleSheet?n.styleSheet.cssText=e.content:n.innerHTML=e.content,t.appendChild(n)}else if(e.url){var r=document.createElement("link");r.href=e.url,r.rel="stylesheet",r.type="text/css",t.appendChild(r)}},require.alias=function(e){return e.replace(/\.js$/i,"")},require.timeout=5e3}}(this);;
+/*
+ * location geo_api
+ * 封装定位组件与外部调用方之间的交互接口
+ */
+
+define('geolocation:static/js/loc_boot.js', function(require, exports, module) {
+    !function(){var n=50,t=25,e={},r=[].slice,a={},c=function(n,t,r,c){var o=a[n];o||(o=a[n]={}),o[t]=o[t]||[],o[t].push({func:r,context:c||e})},o=function(n,t,r,a){var o=function(){return e.off(n,t,o),r.apply(a||e,arguments)};c(n,t,o,a)},f=function(e,c){if(a[e]&&a[e][c]&&a[e][c].length){for(var o=a[e][c],f=[],i=o.length;i--;)f.push({handler:o[i],args:r.call(arguments,1)});!function(){var e=+new Date;do{var r=f.shift(),a=r.handler;try{a.func.apply(a.context,r.args)}catch(c){}}while(f.length&&+new Date-e<n);f.length>0&&setTimeout(arguments.callee,t)}()}},i=function(n,t,r,c){if(c=c||e,a[n]&&a[n][t]&&a[n][t].length)for(var o,f=a[n][t],i=f.length;i--;)o=f[i],o.func===r&&o.context===c&&f.splice(i,1)};e.on=c,e.once=o,e.trigger=f,e.off=i,window.listener=window.listener||e}();;
+    define("geolocation:static/js/util/detect.js",function(i,o,e){var r={},s=r.os={},a=r.browser={},n=r.client={},t=navigator.userAgent;if("string"==typeof t){var d=t.match(/(android)\s+([\d.]+)/i),c=!v&&t.match(/(iphone\sos)\s([\d_]+)/i),v=t.match(/(ipad).*os\s([\d_]+)/i),m=!c&&!v&&t.match(/(ipod\sos)\s([\d_]+)/i),h=t.match(/webkit\/([\d.]+)/i),p=t.match(/chrome\/([\d.]+)/i)||t.match(/crios\/([\d.]+)/i),b=t.match(/firefox\/([\d.]+)/i),w=t.match(/mqqbrowser\/([\d\.]+)/i),f=t.match(/ucbrowser\/([\d.]+)/i),l=t.match(/baidubrowser\/([\d\.]+)/i),g=t.match(/QQ\/([\d\.]+)/),u=t.match(/micromessenger\/([\d\.]+)/i);d&&(s.android=!0,s.version=d[2]),c&&(s.ios=s.iphone=!0,s.version=c[2].replace(/_/g,".")),v&&(s.ios=s.ipad=!0,s.version=v[2].replace(/_/g,".")),m&&(s.ios=s.ipod=!0,s.version=m[2].replace(/_/g,".")),h&&(a.webkit=!0,a.version=h[1]),p&&(a.chrome=!0,a.version=p[1]),b&&(a.firefox=!0,a.version=b[1]),w&&(a.qqbrowser=!0,a.version=w[1]),f&&(a.ucbrowser=!0,a.version=f[1]),l&&(a.baidubrowser=!0,a.version=l[1]),g&&(n.mqq=!0,n.version=g[1]),u&&(n.wechat=!0,n.version=u[1]),!s.ios||w||f||l||(a.safari=!0,a.version=s.version),!s.android||w||f||l||p||(a.android=!0,a.version=s.version),s.version=parseFloat(s.version),a.version=parseFloat(a.version),n.version=parseFloat(n.version)}e.exports=r});;
+    /*
+ * geolocation component saloding@tencent.com
+ *
+ * 对外开放的接口有四个
+ * 1.init
+ * 1.getLocation
+ * 2.watchPosition
+ * 3.clearWatch
+ *
+ * 外部可监听的事件有三个
+ * common.geolocation success
+ * common.geolocation fail
+ * common.geolocation.watch success
+ *
+ * 注： init为 protected 接口，仅供开启定位或需要更新位置信息时调用
+ */
+define('geolocation:static/js/core/geolocation.js', function(require, exports, module) {
+    var cacheGeo = require('geolocation:static/js/core/cachegeolocation'), //缓存定位
+        h5Geo = require('geolocation:static/js/core/h5geolocation'), //H5定位
+        x5Geo = require('geolocation:static/js/core/x5geolocation'), //x5定位
+        wxGeo = require('geolocation:static/js/core/wxgeolocation'), //微信定位
+        qqGeo = require('geolocation:static/js/core/qqgeolocation'), //qq定位
+        ipGeo = require('geolocation:static/js/core/ipgeolocation'); //ip定位
+
+    var detect = require('geolocation:static/js/util/detect'),
+        report = require('geolocation:static/js/util/georeport'),
+        inverseGeo = require('geolocation:static/js/util/inversegeo');
+
+    var storage = require('geolocation:static/js/util/webstorage').local;
+
+    var h5ErrMessage = {};
+    var SUCC_LOCK = false, //成功事件锁
+        FAIL_LOCK = false; //失败事件锁
+
+    var loadingTimeLock = false;//first succ report
+
+    var startGeoTime = 0,
+        endGeoTime = 0,
+        geoTime = 0;
+
+    var geoSuccTimeS = 0,
+        geoSuccTimeE = 0;
+
+    /**串行定位失败标志 */
+    var firstFailFlag = false;
+    var geoLocation = {
+        status: 0, //全局定位状态，0表示未开始，1表示定位中，2表示已成功，-1表示定位失败
+        ipStatus:0,
+        ipLocation : {
+            module: 'geolocation',
+            adcode: window._DEFAULT_CITY.adcode,
+            type: window._DEFAULT_CITY.type,
+            nation: window._DEFAULT_CITY.nation,
+            province: window._DEFAULT_CITY.province,
+            city: window._DEFAULT_CITY.city,
+            district: window._DEFAULT_CITY.district,
+            addr: window._DEFAULT_CITY.addr,
+            lat: window._DEFAULT_CITY.lat,
+            lng: window._DEFAULT_CITY.lng,
+            accuracy: window._DEFAULT_CITY.accuracy || 1001 * 10
+        },
+        myLocation: {
+            module: 'geolocation',
+            adcode: window._DEFAULT_CITY.adcode,
+            type: window._DEFAULT_CITY.type,
+            nation: window._DEFAULT_CITY.nation,
+            province: window._DEFAULT_CITY.province,
+            city: window._DEFAULT_CITY.city,
+            district: window._DEFAULT_CITY.district,
+            addr: window._DEFAULT_CITY.addr,
+            lat: window._DEFAULT_CITY.lat,
+            lng: window._DEFAULT_CITY.lng,
+            accuracy: window._DEFAULT_CITY.accuracy || 1001 * 10
+        },
+        //开启定位
+        init: function(initgeo, options = {}) {
+            options.key && (this.key = options.key)
+            var self = this;
+            var useGeoType = window.locType || '';
+
+            if (self.status == 0) { //初始化
+                self._bind();
+                report.init();
+                if(window.h5GeoMode == 'serial') {
+                    self._subGeos = [cacheGeo];
+                    detect.client.mqq && self._subGeos.push(qqGeo);
+                    detect.client.wechat && self._subGeos.push(wxGeo);
+                    detect.browser.qqbrowser && self._subGeos.push(x5Geo);
+                    if(!detect.client.mqq && !detect.client.wechat && !detect.browser.qqbrowser) {
+                        self._subGeos.push(h5Geo);
+                    }
+                }else{
+                    self._subGeos = [cacheGeo];
+
+                    if(useGeoType == 'h5') {
+                        self._subGeos.push(h5Geo);
+                    }else if(useGeoType == 'qq') {
+                        detect.client.mqq && self._subGeos.push(qqGeo);
+                    }else if(useGeoType == 'wx') {
+                        detect.client.wechat && self._subGeos.push(wxGeo);
+                    }else if(useGeoType == 'x5') {
+                        detect.browser.qqbrowser && self._subGeos.push(x5Geo);
+                    }else{
+                        if(self.isUseH5()){
+                            self._subGeos.push(h5Geo);
+                        }
+                        detect.client.mqq && self._subGeos.push(qqGeo);
+                        detect.client.wechat && self._subGeos.push(wxGeo);
+                        detect.browser.qqbrowser && self._subGeos.push(x5Geo);
+                    }
+
+                    }
+
+            }
+            initgeo = initgeo !== false;
+            if (self.status != 1 && initgeo) { //如果不在定位中，则启动定位流程
+                startGeoTime = new Date().getTime();
+                self.status = 1;
+                SUCC_LOCK = FAIL_LOCK = false; //重置事件锁
+                if(window.h5GeoMode == 'serial') {
+                    /**延迟是为了初始化wx变量 */
+                    setTimeout(function() {
+                        for (var i = 0, j = self._subGeos.length; i < j; i++) {
+                        self._subGeos[i].getLocation();
+                        }
+                    }, 1500);
+                }else{
+                    for (var i = 0, j = self._subGeos.length; i < j; i++) {
+                        self._subGeos[i].getLocation();
+                    }
+                }
+
+            }
+        },
+
+        //获取位置信息，defaultLoc的含义是调用方对精度要求不高，可以接受缺省值
+        getLocation: function(defaultLoc) {
+            var self = this;
+
+            if(defaultLoc) {
+                if(self.ipStatus == 2){
+                    return self.ipLocation;
+                }else{
+                    var type = window._DEFAULT_CITY['type'],
+                    ip = window._DEFAULT_CITY['ip'];
+                    if (ip) {
+                        if(window.h5GeoMode == 'serial'){
+                            self._bind();
+                            firstFailFlag = false;
+                        }
+                        if(ip && ipGeo.getLocation(ip, { key: self.key })){
+                            self.ipLocation = ip && ipGeo.getLocation(ip, { key: self.key });
+                        }else if(self.ipLocation.city && self.ipLocation.lat && self.ipLocation.lng){//海外地址
+                            self._success('ip', self.ipLocation);
+                        }
+                        /**为了解决串行定位时直接调用ip定位时，不触发监听函数问题 */
+                    }else{
+                        self._success('ip', self.ipLocation); //cache， ip定位的结果可以直接用
+                    }
+                }
+            }else{
+                 setTimeout(function(defaultLoc) {
+                    self.status = 0;
+                    self.init(true);
+                 }, 0);
+            }
+        },
+
+        //持续监听位置信息
+        watchPosition: function() {
+            if (!this.WATCH_ID) {
+                this._bind();
+                this.WATCH_ID = h5Geo.watchPosition();
+            }
+        },
+
+        //清除监听
+        clearWatch: function() {
+            if (this.WATCH_ID) {
+                this.WATCH_ID = null;
+                h5Geo.clearWatch(this.WATCH_ID);
+            }
+        },
+
+        _bind: function() {
+            var self = this;
+            // 1. 小弟定位成功
+            listener.on('geolocation', 'success', function(eventType, geoType, coords, coord_type) {
+                if (geoType == 'cache' || geoType == 'cache.robust' || geoType == 'ip') {
+                    self._success(geoType, coords); //cache， ip定位的结果可以直接用
+                } else {
+                    inverseGeo.inverse(coords, coord_type, self.key, function(position) {
+                        self._success(geoType, position); //其它定位结果需要先做逆地址解析
+                    });
+                }
+            });
+
+            // 2. 小弟定位失败
+            listener.on('geolocation', 'fail', function(eventType, geoType, message) {
+                if(window.h5GeoMode != 'serial') {
+                    for (var i = 0, j = self._subGeos.length; i < j; i++) {
+                        if (self._subGeos[i].status != -1) {
+                            return; //还有某个小弟在努力中，还有希望
+                        }
+                    }
+                    self._fail(message); //本次会话定位小弟都不给力
+
+                    /**重置子定位状态 */
+                    for (var i = 0, j = self._subGeos.length; i < j; i++) {
+                        self._subGeos[i].status = 0;
+                    }
+
+                }else{
+                    if(!firstFailFlag) {
+                        for (var i = 0, j = self._subGeos.length; i < j; i++) {
+                            if (self._subGeos[i].status != -1) {
+                                return; //还有某个小弟在努力中，还有希望
+                            }
+                        }
+
+                        h5Geo.getLocation();
+                        return;
+                    }
+
+                    firstFailFlag = true;
+
+                    if(firstFailFlag) {
+                        self._fail(message); //本次会话定位小弟都不给力
+                    }
+
+
+                    /**重置子定位状态 */
+                    for (var i = 0, j = self._subGeos.length; i < j; i++) {
+                        self._subGeos[i].status = 0;
+                    }
+                }
+
+            });
+
+            //3. h5 watch事件
+            listener.on('geolocation.watch', 'success', function(eventType, geoType, coords, coord_type) {
+                if (geoType == 'h5_watch') {
+                    inverseGeo.inverse(coords, coord_type, self.key,function(position) {
+                        self._success(geoType, position, true); //h5 watch结果强制更新位置信息
+                    });
+                }
+            });
+        },
+
+        //定位成功 forceRefresh 强制更新缓存
+        _success: function(geoType, position, forceRefresh) {
+            var self = this;
+            //for geo time
+            self.status = 2; //定位已成功
+            if(geoType == 'ip') {
+                self.ipLocation = position;
+                self.ipStatus = 2;
+                listener.trigger('common.geolocation', 'success', self.ipLocation); //通知业务层监听者
+            }else if (geoType == 'cache') {
+                self.myLocation = position;
+            } else {
+
+                var accuracy = parseInt(position.accuracy);
+                //update position when succtime >1min
+                geoSuccTimeE = geoSuccTimeS;
+                geoSuccTimeS = new Date().getTime();
+                var intervalTime = 0;
+
+                if(geoSuccTimeS >= geoSuccTimeE) {
+                    intervalTime = (geoSuccTimeS - geoSuccTimeE)/1000;
+                }
+
+                //if (forceRefresh || (accuracy && (accuracy < self.myLocation.accuracy))) {
+                var nowAccuracy = self.myLocation.accuracy;
+                if ((intervalTime && intervalTime >= 60) || geoType == 'h5_watch') {
+                        self.myLocation = {
+                            module: 'geolocation',
+                            type: geoType,
+                            adcode: position.adcode || '',
+                            nation: position.nation || '',
+                            province: position.province || '',
+                            city: position.city || '', // h5定位后 若逆地址解析失败则无城市和街道信息
+                            district: position.district || '',
+                            addr: position.addr || '', // IP定位无地址信息
+                            lat: position.lat,
+                            lng: position.lng,
+                            accuracy: accuracy
+                        }
+                }else{
+                    if(accuracy && (accuracy < nowAccuracy)) {
+                        self.myLocation = {
+                            module: 'geolocation',
+                            type: geoType,
+                            adcode: position.adcode || '',
+                            nation: position.nation || '',
+                            province: position.province || '',
+                            city: position.city || '', // h5定位后 若逆地址解析失败则无城市和街道信息
+                            district: position.district || '',
+                            addr: position.addr || '', // IP定位无地址信息
+                            lat: position.lat,
+                            lng: position.lng,
+                            accuracy: accuracy
+                        }
+                    }
+                }
+
+                if (forceRefresh || (accuracy && (accuracy < nowAccuracy))) {
+                    if (geoType != 'cache.robust') {
+                        cacheGeo.setLocation(self.myLocation); //更新缓存
+                    }
+                }
+                    // 通知业务层持续监听者 位置信息已更新
+                    listener.trigger('common.geolocation.watch', 'success', self.myLocation);
+            }
+
+            //定位已成功(单次定位期间仅触发一次)  同时建议业务层使用once监听该事件
+            if (!SUCC_LOCK) {
+                SUCC_LOCK = true; //加锁  不再重复通知业务监听者
+                listener.trigger('common.geolocation', 'success', self.myLocation); //通知业务层监听者
+
+                endGeoTime = new Date().getTime();
+                if(0 <= geoTime) {
+                    geoTime = endGeoTime - startGeoTime;
+                }
+
+                if ((geoType != 'cache.robust') && (geoType != 'ip')) {
+                    listener.trigger('geolocation.report', 'success',geoType,geoTime); //通知上报定位成功（ip和robust cache定位除外）
+                }
+            }
+        },
+
+        //定位失败
+        _fail: function(message) {
+            var self = this;
+            self.status = -1; //标记定位全部失败
+
+            var err = message;
+            if(err.type == 'h5'){
+                  h5ErrMessage = err;
+            }
+            //定位已失败
+            if (!FAIL_LOCK) {
+                FAIL_LOCK = true; //加锁
+                listener.trigger('common.geolocation', 'fail',h5ErrMessage); //通知业务层监听者
+                listener.trigger('geolocation.report', 'fail'); //通知上报定位失败
+
+                //启动救命木板（尽量尝试取cache定位信息）
+                var position = cacheGeo.getLocation(true);
+
+                //启动最后的救命稻草 ip定位
+                if (position == null) {
+                    var ipPos;
+                    var type = window._DEFAULT_CITY['type'],
+                        ip = window._DEFAULT_CITY['ip'];
+
+                    if (ip) {
+                        ip && ipGeo.getLocation(ip, {key: self.key});
+                    }
+                }
+            }
+        },
+        isUseH5: function() {
+            /**判断是否发起定位 */
+            var useType = true;
+            var precisegeo = storage.getItem('realgeocache');
+            var cacheTime = storage.getItem('realgeocacheTimestamp') || 0;
+            var validTime = 300;
+            if(precisegeo && (window.cacheType || typeof window.cacheType === 'undefined')){
+                var precisegeoJson = JSON.parse(precisegeo);
+                preLat = precisegeoJson.lat,
+                preLng = precisegeoJson.lng;
+                if (precisegeo && preLat && preLng) {
+                    if (parseInt(Date.now() - cacheTime) < validTime * 1000) {
+
+                       useType = false;
+                    }
+                }
+            }
+            //alert("=1:"+useType);
+            return useType;
+        }
+
+    }
+    module.exports = geoLocation;
+});
+;
+    define("geolocation:static/js/core/cachegeolocation.js",function(e,t,a){var r=e("geolocation:static/js/util/webstorage").local,n={status:0,getLocation:function(e){if(window.geodebug)return null;if(1==window.closeCache)return null;if(1==window.clearCache)return r.clear(),null;var t=this;t.status=1;var a=e?"cache.robust":"cache",n=r.getItem("realgeocache"),o=r.getItem("realgeocacheTimestamp")||0,c=null,i=null;if(n&&(window.cacheType||"undefined"==typeof window.cacheType)){var s=JSON.parse(n);if(c=s.lat,i=s.lng,n&&c&&i){var l=e?43200:360;if(parseInt(Date.now()-o)<1e3*l){var u=JSON.parse(n);return u.type=a,u.accuracy=+u.accuracy*Math.round(Math.sqrt(Math.sqrt(l))),t.status=2,listener.trigger("geolocation","success",a,u),u}return t.status=-1,listener.trigger("geolocation","fail",a,"expired"),null}return t.status=-1,listener.trigger("geolocation","fail",a,"missed"),null}return t.status=-1,listener.trigger("geolocation","fail",a,"missed"),null},setLocation:function(e){return e&&(r.setItem("realgeocacheTimestamp",Date.now()),r.setItem("realgeocache",JSON.stringify(e))),!0}};a.exports=n});;
+    define("geolocation:static/js/util/webstorage.js",function(e,r,t){function o(e){this.backend=e}o.prototype.__defineGetter__("length",function(){try{return this.backend.length}catch(e){return console.error("Read Storage length error:"+e),0}}),o.prototype.key=function(e){try{return this.backend.key(e)}catch(r){return console.error("Get Storage key error:"+r),null}},o.prototype.getItem=function(e){try{return this.backend.getItem(e)}catch(r){return console.error("Get Storage item error:"+r),null}},o.prototype.setItem=function(e,r){try{return this.backend.setItem(e,r)}catch(t){console.error("Set Storage item error:"+t)}},o.prototype.removeItem=function(e){try{return this.backend.removeItem(e)}catch(r){return console.error("Remove Storage item error:"+r),null}},o.prototype.clear=function(){try{return this.backend.clear()}catch(e){console.error("Clear Storage error:"+e)}};var n,c;try{n=window.localStorage,c=window.sessionStorage}catch(a){console.error("Get localStorage or sessionStorage error:"+a)}t.exports={local:new o(n||{}),session:new o(c||{})}});;
+    define("geolocation:static/js/core/h5geolocation.js",function(t,c,a){var o=t("geolocation:static/js/util/detect"),e=(t("geolocation:static/js/util/webstorage").local,null),i=0,n=0,r=0,s=0,l=0,u=0,g=0,h={status:0,_config:{enableHighAccuracy:!0,maximumAge:1e3,timeout:15e3,accuracy:2e3},_stat_geoloc_start:null,getLocation:function(){this.status=1,this._getCurrentPosition()},_getCurrentPosition:function(){return navigator.geolocation.getCurrentPosition(this._onSuccess,this._onFailure,this._config)},watchPosition:function(){return e=Date.now(),navigator.geolocation.watchPosition(this._onWatchSuccess,this._onWatchFailure,this._config)},clearWatch:function(t){return navigator.geolocation.clearWatch(t)},_onSuccess:function(t){u=(new Date).getTime();{var c=h,a=t.coords;a.accuracy}if(0!=a.longitude&&0!=a.latitude){var e={lat:a.latitude,lng:a.longitude,accuracy:a.accuracy,geoTime:g},i=1;o.android&&o.browser.baidubrowser&&(i=5,e.accuracy=e.accuracy||60),c.status=2,listener.trigger("geolocation","success","h5",e,i)}else c.status=-1,listener.trigger("geolocation","fail","h5","accuracy low")},_onFailure:function(t){var c=h,a=t;a.type="h5",c.status=-1,listener.trigger("geolocation","fail","h5",a),listener.trigger("geolocation.report_fail","fail","h5")},_onWatchSuccess:function(t){i++;var c=h,a=t.coords,l=a.accuracy;if(l<c._config.accuracy&&a&&0!=a.longitude&&0!=a.latitude){if(!r&&1==i){r=1;var u=Date.now()-e;listener.trigger("geolocation.watch","success","watch_loc_first",u)}if(!n&&i>=2&&(n=1,listener.trigger("geolocation.watch","success","watch_loc_second")),!s&&a.heading&&0!=a.heading&&i>=2){var g=Date.now()-e;s=1,listener.trigger("geolocation.watch","success","watch_gps_load",g)}var _={lat:a.latitude,lng:a.longitude,accuracy:a.accuracy},f=1;o.android&&o.browser.baidubrowser&&(f=5,_.accuracy=_.accuracy||60),listener.trigger("geolocation.watch","success","h5_watch",_,f)}},_onWatchFailure:function(t){i++,l||(l=1,listener.trigger("geolocation.watch","fail","watch_loc_fail",t&&t.code))}};a.exports=h});;
+    define("geolocation:static/js/core/x5geolocation.js",function(t,e,o){var a="//jsapi.qq.com/get?api=app.getGeoLocation",i={status:0,getLocation:function(){var t=this;0!=t.status?t._getLocation():window.LazyLoad&&window.LazyLoad.js?window.LazyLoad.js(a,t._getLocation):t._loadScript(a,t._getLocation)},_loadScript:function(t,e){var o=document.createElement("SCRIPT");o.onload=o.onreadystatechange=function(){var t=o.readyState;if("undefined"==typeof t||"loaded"==t||"complete"==t)try{e&&e(o)}finally{o.onload=o.onreadystatechange=null}},o.setAttribute("type","text/javascript"),o.setAttribute("charset","utf-8"),o.setAttribute("src",t),document.getElementsByTagName("head")[0].appendChild(o)},_getLocation:function(){var t=i;t.status=1;var e=window.browser&&window.browser.app&&window.browser.app.getGeoLocation;e?(e(function(e){if(e&&"true"==e.ret){var o={lat:e.latitude,lng:e.longitude,accuracy:200};t.status=2,listener.trigger("geolocation","success","x5",o)}else t.status=-1,listener.trigger("geolocation","fail","x5","error result")},function(){t.status=-1,listener.trigger("geolocation","fail","x5","error callback")}),setTimeout(function(){1==t.status&&(t.status=-1,listener.trigger("geolocation","fail","x5","timeout"))},5e3)):(t.status=-1,listener.trigger("geolocation","fail","x5","NO_API"))}};o.exports=i});;
+    define("geolocation:static/js/core/wxgeolocation.js",function(t,i,e){function n(){for(var t="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789",i="",e=0;8>e;e++)i+=t.split("")[parseInt(61*Math.random(),10)];return i}var a={appId:"wx183412414b784345",timestamp:(new Date).getTime(),nonceStr:n(),signature:null,jsApiList:["getLocation"]},o={status:0,getLocation:function(){var t=this;if(t.status=1,"serial"!=window.h5GeoMode){if(!window.wx)return t.status=-1,void listener.trigger("geolocation","fail","wx","NO_API");var i=function(){window.wx.config(a);var i=function(){window.wx.getLocation({timestamp:a.timestamp,nonceStr:a.noncestr,addrSign:a.signature,success:function(i){var e={lat:i.latitude,lng:i.longitude,accuracy:i.accuracy};t.status=2,listener.trigger("geolocation","success","wx",e)},fail:function(){t.status=-1,listener.trigger("geolocation","fail","wx","call wx jsapi fail")}})};window.wx.ready(i)};t._getJsapiTicket(i)}else if(window.wx.ready(function(){window.wx.getLocation({success:function(i){var e={lat:i.latitude,lng:i.longitude,accuracy:i.accuracy};t.status=2,listener.trigger("geolocation","success","wx",e)},fail:function(){t.status=-1,listener.trigger("geolocation","fail","wx","call wx jsapi fail")}})}),"{}"==JSON.stringify(window.wx))return t.status=-1,void listener.trigger("geolocation","fail","wx","NO_API")},_getJsapiTicket:function(t){var i=this;Salo&&Salo.ajax({type:"jsonp",url:"//weixincommon.map.qq.com/weixincommon/jsApiSign",data:{appId:a.appId,noncestr:a.nonceStr,timestamp:a.timestamp,url:encodeURIComponent(window.location.href.replace(window.location.hash,"")),output:"jsonp"},callback:{success:function(e){if("string"==typeof e)try{e=JSON.parse(e)}catch(n){}return e&&0==e.returnValue?(e=e.content,void(e&&e.signature&&"accessfail"!=e.signature&&"tokenfail"!=e.signature?(a.signature=e.signature,t(e)):(i.status=-1,listener.trigger("geolocation","fail","wx","fetch JsapiTicket resp error")))):(i.status=-1,void listener.trigger("geolocation","fail","wx","jsApiSign service result error"))},error:function(){i.status=-1}}})},_getQueryStr:function(t){var i,e=String(window.document.location.href),n=new RegExp("(^|)"+t+"=([^&]*)(&|$)","gi").exec(e);return(i=n)?i[2]:""}};e.exports=o});;
+    define("geolocation:static/js/core/qqgeolocation.js",function(t,o,i){var e={status:0,getLocation:function(){var t=this;t.status=1,window.mqq&&(window.mqq.iOS||window.mqq.android)?window.mqq.sensor.getLocation(function(o,i,e){if(0==o){var n={lat:i,lng:e,accuracy:175};t.status=2,listener.trigger("geolocation","success","qq",n,5)}else t.status=-1,listener.trigger("geolocation","fail","qq",o)}):(t.status=-1,listener.trigger("geolocation","fail","qq","NO_API"))}};i.exports=e});;
+    define("geolocation:static/js/core/ipgeolocation.js",function(o,t,a){var i={status:0,getLocation:function(o,t){var a=this;Salo&&Salo.ajax({type:"jsonp",url:"//h5gw.map.qq.com/ws/location/v1/ip",data:{ip:o,key:t.key,apptag:"h5loc_ip_loc",output:"jsonp",t:(new Date).getTime()},callback:{success:function(o){if(o&&0==o.status){var t=o.result,i={module:"geolocation",type:"ip",adcode:t.ad_info.adcode||"",nation:t.ad_info.nation,province:t.ad_info.province,city:t.ad_info.city,addr:"",lat:t.location.lat,lng:t.location.lng,accuracy:1e4};a.status=2,listener.trigger("geolocation","success","ip",i)}else a.status=-1,listener.trigger("geolocation","fail","ip",o&&o.message)},error:function(){a.status=-1,listener.trigger("geolocation","fail","ip","timeout")}}})}};a.exports=i});;
+    var storage=require("geolocation:static/js/util/webstorage").local;define("geolocation:static/js/util/auth.js",function(t,e,o){var r=t("geolocation:static/js/util/detect"),n=!1,a=0,i=document.createElement("a");i.href=document.referrer;var c=null,g=0,m=!0,s=6048e5,u="";document.referrer&&i.hostname&&(u=i.hostname,c=storage.getItem(u+"_authority"),g=storage.getItem(u+"_authTimeStamp")||0,m=parseInt(Date.now()-g)>s);var l=function(){return r.os.android&&r.client.mqq?n?!0:!u||a>0?!1:/(^|\.)(dianping|meituan|mtwaimai|jingdong|58|elong|fang|gtimg|tenpay|qq|jd|51ping)\.com$/.test(u)?n=!0:(a++,n=confirm("“"+u+"”想使用您当前的位置")):!0},d=function(){var t;if(document.referrer&&i.hostname){var e=i.port?":"+i.port:"";t=i.protocol+"//"+i.hostname+e}return t};o.exports={getAuth:l,getOrigin:d}});;
+    define("geolocation:static/js/util/georeport.js",function(o,e,t){var n,i={init:function(){this.geoLogId="geopositioning",this.userLogId="geolocation",this._bind(),n=(new Date).getTime()},_bind:function(){var o=this;listener.on("geolocation","success",function(){}),listener.on("geolocation","fail",function(){}),listener.on("geolocation.watch","success",function(){}),listener.on("geolocation.watch","fail",function(){}),listener.on("geolocation.report","success",function(e,t,n){o._report(o.userLogId,t,!0,"success",n)}),listener.on("geolocation.report","fail",function(e,t,n){o._report(o.userLogId,"temp",!1,n||"fail")})},_report:function(o,e,t,i,s){var c=((new Date).getTime()-n)/1e3;0>=s&&(s=0);try{window._prStat&&window._prStat.report(o,{type:e,success:t?1:0,message:i,loc_time:c,geoTime:s})}catch(r){}}};t.exports=i});;
+    define("geolocation:static/js/util/inversegeo.js",function(a,o,t){var n={inverse:function(a,o,t,n){var c=this;Salo&&Salo.ajax({type:"jsonp",url:"//h5gw.map.qq.com/ws/geocoder/v1",data:{location:a.lat+","+a.lng,coord_type:o||1,key:t,apptag:"h5loc_geocoder",output:"jsonp",t:(new Date).getTime()},callback:{success:function(e){var l=e.result;if(l&&l.ad_info&&l.ad_info.city&&l.location||l&&l.address_component&&l.address_component.nation){var i={module:"geolocation",adcode:l.ad_info.adcode||"",nation:l.ad_info.nation||l.address_component.nation,province:l.ad_info.province||"",city:l.ad_info.city||l.address_component.ad_level_1,district:l.ad_info.district||l.address_component.ad_level_2,addr:l.formatted_addresses&&l.formatted_addresses.recommend||l.ad_info.address,lat:l.location.lat,lng:l.location.lng,accuracy:a.accuracy||""};n(i)}else c._translate(a,o,t,n)},error:function(){c._translate(a,o,t,n)}}})},_translate:function(a,o,t,n){var c=this;Salo&&Salo.ajax({type:"jsonp",url:"//h5gw.map.qq.com/ws/coord/v1/translate",data:{locations:a.lat+","+a.lng,type:o||1,key:t,apptag:"h5loc_coord_translate",output:"jsonp",t:(new Date).getTime()},callback:{success:function(t){t&&t.locations&&t.locations[0]&&(a={lat:t.locations[0].lat,lng:t.locations[0].lng,accuracy:a.accuracy}),c._finally(a,o,n)},error:function(){c._finally(a,o,n)}}})},_finally:function(a,o,t){var n={lat:a.lat,lng:a.lng,accuracy:a.accuracy};t(n)}};t.exports=n});;
+    !function(){var t=function(t){t=t[0]||{},this.url=t.url||"",this.type=t.type||"xhr",this.method="jsonp"==this.type?"GET":t.method&&t.method.toUpperCase()||"GET",this.param=t.data||null,this.callback=t.callback||{success:new Function,error:new Function},this.XHR=null,"undefined"==typeof window._JSONP_callback&&(window._JSONP_callback={}),this._createRequest()};t.prototype={_createXHR:function(){for(var t=[function(){return new XMLHttpRequest},function(){return new ActiveXObject("Msxml2.XMLHTTP")},function(){return new ActiveXObject("Microsoft.XMLHTTP")}],e=0,n=t.length;n>e;e++){try{t[e]()}catch(a){continue}return this._createXHR=t[e],t[e]()}},_createRequest:function(){return"jsonp"==this.type?this._setJSONPRequest():this._setXHRRequest()},_setXHRRequest:function(){var t=this,e="";for(var n in this.param)""==e?e=n+"="+this.param[n]:e+="&"+n+"="+this.param[n];if(this.XHR=this._createXHR(),this.XHR.onreadystatechange=function(){4==t.XHR.readyState&&200==t.XHR.status?t.callback.success(t.XHR.responseText):t.callback.error("retry")},"GET"==this.method){var a=-1==this.url.indexOf("?")?this.url+"?"+e:this.url+"&"+e;this.XHR.open(this.method,a,!0),this.XHR.send()}else this.XHR.open(this.method,this.url,!0),this.XHR.setRequestHeader("Content-Type","application/x-www-form-urlencoded; charset=utf-8"),this.XHR.send(e)},_setJSONPRequest:function(){var t=document.getElementsByTagName("head")[0],e=document.createElement("script"),n=this._setRandomFun(),a=this,i="";for(var s in this.param)""==i?i=s+"="+this.param[s]:i+="&"+s+"="+this.param[s];e.type="text/javascript",e.charset="utf-8",t?t.appendChild(e):document.body.appendChild(e),window._JSONP_callback[n.id]=function(t){a.callback.success(t),setTimeout(function(){delete window._JSONP_callback[n.id],e.parentNode.removeChild(e)},100)},e.src=this.url+"?callback="+n.name+"&"+i},_setRandomFun:function(){var t="";do t="JSONP"+Math.floor(1e4*Math.random());while(window._JSONP_callback[t]);return{id:t,name:"window._JSONP_callback."+t}}},window.Salo=window.Salo||{},Salo.ajax=function(){return new t(arguments)}}();;
+    define("geolocation:static/js/util/stat.js",function(e,r,t){function o(){var e=1,r=navigator.userAgent,t=window.devicePixelRatio||1;(navigator.platform.match(/iPhone|iPad|iPod/)||r.match(/Chrome/)&&window.chrome||r.match(/Opera/)||r.match(/Firefox/)||r.match(/IEMobile/))&&(e=t),i.report("pv",{sw:screen.width*e,sh:screen.height*e,dpr:t})}var n=function(e){var r=[];for(var t in e)null!=e[t]&&r.push(encodeURIComponent(t)+"="+encodeURIComponent(e[t]));return r.join("&")},i={init:function(e){this.appId=e.appId,this.statService=e.statService,this.from=e.from,o()},report:function(e,r){var t=this,o=new Image(1,1),i={appid:t.appId,logid:e,from:t.from,referer:document.referrer,_ignore:parseInt(1e5*Math.random())};r=r||{};for(var a in r)r.hasOwnProperty(a)&&!i.hasOwnProperty(a)&&(i[a]=r[a]);o.src=t.statService+"?"+n(i)}};t.exports=i});;
+
+    var geolocation = require('geolocation:static/js/core/geolocation');
+    // var serialGeolocation = require('geolocation:static/js/core/geolocation_serial.js');
+    var auth = require('geolocation:static/js/util/auth');
+
+    //暂时屏蔽
+    // 开启debug模式
+    // function openGeoDebugMode() {
+    //     window.geodebug = 1;
+    // }
+
+    // 关闭debug模式
+    // function closeGeoDebugMode() {
+    //     window.geodebug = 0;
+    // }
+
+    // 清除缓存
+    // function clearGeoCacheMode() {
+    //     window.clearCache = 1;
+    // }
+
+    //选择定位模式
+    // function initGeoType(type) {
+    //     window.type = type;
+    // }
+
+
+    var loc_boot = {
+        init: function() {
+            // if (param.debug == 1) {
+            //     openGeoDebugMode();
+            // }
+
+            // if(param.clearCache) {
+            //     clearGeoCacheMode();
+            // }
+
+            // if (param.type) {
+            //     initGeoType(param.type);
+            // }
+            if(!window.apiKey) {
+                window.apiKey = query.key;
+            }
+            /**区分串行&并行定位方式 */
+            if(!window.h5GeoMode) {
+                if(typeof query === 'undefined') {
+                    window.h5GeoMode = '';
+                }else{
+                    window.h5GeoMode = query.geoMode;
+                }
+
+            }
+
+            if (window.apiKey) {
+                this.key = window.apiKey;
+                this.geoMode = window.h5GeoMode;
+                this._geobind(); //bind event
+                if(this.geoMode != 'serial') {
+                   geolocation.init(false, {
+                     key: this.key,
+                   }); //init geo
+                }
+            }
+           // console.log("==============query.h5GeoMode:",query);
+
+        },
+
+        _geobind: function(data) {
+            var self = this;
+
+            listener.on('common.geolocation', 'success', function(evt, loc) {
+                loc && self._send(loc);
+            });
+
+            // 接收parent调用信息
+                switch (data) {
+                    case 'watchPosition':
+                        geolocation.watchPosition();
+                        break;
+                    case 'clearWatch':
+                        geolocation.clearWatch();
+                        break;
+                    case 'getLocation':
+                        // if(this.geoMode == 'serial'){
+                        //     var loc = serialGeolocation.getLocation();
+                        //     loc && self._send(loc);
+                        //     break;
+                        // }else{
+                            var loc = geolocation.getLocation();
+                            loc && self._send(loc);
+                            break;
+                      //  }
+                    case 'getLocation.robust':
+                        var loc = geolocation.getLocation(true);
+                        loc && self._send(loc);
+                        break;
+                    case 'geoLocation.geodebug':
+                        openGeoDebugMode();
+                        break;
+                    default:
+                        break;
+                }
+
+
+            listener.on('common.geolocation', 'success', function(evt, loc) {
+                loc && self._send(loc);
+            });
+
+            listener.on('common.geolocation', 'fail', function(evt, loc) {
+               // self._send(null);
+
+              var errParams = {};
+              errParams.loc = loc;
+              errParams.type = 'fail';
+              errParams && self._send(errParams);
+            });
+
+            listener.on('common.geolocation.watch', 'success', function(evt, loc) {
+                loc && self._send(loc);
+            });
+
+
+        },
+
+        _send: function(loc) {
+            var authPass = auth.getAuth();
+            var origin = auth.getOrigin();
+            //判断是否是失败状态
+            var succType = false;
+            if(loc.type != 'fail') {
+                succType = true;
+            }
+
+            if(!succType) {
+                var originErr = loc.loc;
+
+                var errMessage  = {
+                    code : originErr.code,
+                    message : originErr.message,
+                    type: 'fail'
+                }
+            }
+
+            //console.log('authPass:', authPass, 'origin:', origin, 'loc:', loc);
+            if (loc && succType) {
+                listener.trigger('loc.geolocation', 'success', loc);
+            } else if(errMessage) {
+                listener.trigger('loc.geolocation', 'success', errMessage);
+            } else {
+                listener.trigger('loc.geolocation', 'success', null);
+            }
+        }
+    };
+
+    module.exports = loc_boot;
+});
+;
+define("geolocation:static/js/util/stat.js",function(e,r,t){function o(){var e=1,r=navigator.userAgent,t=window.devicePixelRatio||1;(navigator.platform.match(/iPhone|iPad|iPod/)||r.match(/Chrome/)&&window.chrome||r.match(/Opera/)||r.match(/Firefox/)||r.match(/IEMobile/))&&(e=t),i.report("pv",{sw:screen.width*e,sh:screen.height*e,dpr:t})}var n=function(e){var r=[];for(var t in e)null!=e[t]&&r.push(encodeURIComponent(t)+"="+encodeURIComponent(e[t]));return r.join("&")},i={init:function(e){this.appId=e.appId,this.statService=e.statService,this.from=e.from,o()},report:function(e,r){var t=this,o=new Image(1,1),i={appid:t.appId,logid:e,from:t.from,referer:document.referrer,_ignore:parseInt(1e5*Math.random())};r=r||{};for(var a in r)r.hasOwnProperty(a)&&!i.hasOwnProperty(a)&&(i[a]=r[a]);o.src=t.statService+"?"+n(i)}};t.exports=i});;
+define("geolocation:static/js/util/detect.js",function(i,o,e){var r={},s=r.os={},a=r.browser={},n=r.client={},t=navigator.userAgent;if("string"==typeof t){var d=t.match(/(android)\s+([\d.]+)/i),c=!v&&t.match(/(iphone\sos)\s([\d_]+)/i),v=t.match(/(ipad).*os\s([\d_]+)/i),m=!c&&!v&&t.match(/(ipod\sos)\s([\d_]+)/i),h=t.match(/webkit\/([\d.]+)/i),p=t.match(/chrome\/([\d.]+)/i)||t.match(/crios\/([\d.]+)/i),b=t.match(/firefox\/([\d.]+)/i),w=t.match(/mqqbrowser\/([\d\.]+)/i),f=t.match(/ucbrowser\/([\d.]+)/i),l=t.match(/baidubrowser\/([\d\.]+)/i),g=t.match(/QQ\/([\d\.]+)/),u=t.match(/micromessenger\/([\d\.]+)/i);d&&(s.android=!0,s.version=d[2]),c&&(s.ios=s.iphone=!0,s.version=c[2].replace(/_/g,".")),v&&(s.ios=s.ipad=!0,s.version=v[2].replace(/_/g,".")),m&&(s.ios=s.ipod=!0,s.version=m[2].replace(/_/g,".")),h&&(a.webkit=!0,a.version=h[1]),p&&(a.chrome=!0,a.version=p[1]),b&&(a.firefox=!0,a.version=b[1]),w&&(a.qqbrowser=!0,a.version=w[1]),f&&(a.ucbrowser=!0,a.version=f[1]),l&&(a.baidubrowser=!0,a.version=l[1]),g&&(n.mqq=!0,n.version=g[1]),u&&(n.wechat=!0,n.version=u[1]),!s.ios||w||f||l||(a.safari=!0,a.version=s.version),!s.android||w||f||l||p||(a.android=!0,a.version=s.version),s.version=parseFloat(s.version),a.version=parseFloat(a.version),n.version=parseFloat(n.version)}e.exports=r});;
+qq.maps.Geolocation = (function() {
+
+    var detect = require('geolocation:static/js/util/detect');
+    //for wechat
+    if(detect.client.wechat) {
+        loadScript('https://res.wx.qq.com/open/js/jweixin-1.6.2.js');
+    }
+    //for qq
+    if(detect.client.mqq) {
+        loadScript('https://pub.idqqimg.com/qqmobile/qqapi.js?_bid=152');
+    }
+    var listener = window.listener;
+    var geoCallback = [],
+        watchCallback = null,
+        geoStatus = 0,//定位状态，0表示未开始，1表示定位中，2表示已成功，-1表示定位失败
+        timeStart = null,
+        timeEnd = null,
+        timeout = null,
+        timeSuccEnd = null,
+        _timer = null; // 定时器，用于控制获取定位信息的超时时间
+        window.cacheType = true;
+        
+
+    var Geolocation = function() {
+
+        if(!window.apiKey) {
+            window.apiKey = query.key;
+        }
+
+        if(!window.apiReferer) {
+            window.apiReferer = query.referer;
+        }
+
+      
+        var key = window.apiKey;
+        var referer = window.apiReferer;
+
+        if(!key){
+            alert("请输入key！");
+            return;
+        }
+
+        if(!referer){
+            alert("请输入referer！");
+            return;
+        }
+        var self = this;
+        listener.on('loc.geolocation', 'success', function(evt, loc) {
+            if(loc && loc.module == 'geolocation'){
+                var geoType = loc.type;
+                clearTimeout(_timer);
+                if(geoCallback.length > 0){   //执行回调函数
+                    var cb = geoCallback.shift();
+                    cb.sucCb && cb.sucCb(loc);
+                }
+                geoStatus = 2;
+                self.executeNextGeo();
+                // 监听定位信息成功
+                watchCallback && watchCallback(loc);
+            } else {
+                timeEnd = new Date().getTime();
+                var timeCost = timeEnd - timeStart;
+                if(loc && loc.type == 'fail' && geoCallback.length > 0 && geoCallback[0].type === 'geo') {  
+                    var cb = geoCallback.shift();   
+                    cb.errCb && cb.errCb(loc);
+                    geoStatus = -1;
+                    self.executeNextGeo();
+                } else if(timeCost >= timeout && geoCallback.length > 0 && geoCallback[0].type === 'geo'){
+                    var cb = geoCallback.shift();
+                    var errInfo = {
+                        type: 'fail',
+                        code: 5,
+                        message: 'The request to get api timeout'
+                    }
+                    cb.errCb && cb.errCb(loc);
+                    clearTimeout(_timer);
+                    geoStatus = -1;
+                    self.executeNextGeo();
+                }else {
+                    //继续等待
+                }
+                // 获取粗糙定位信息失败
+                if(geoCallback.length > 0 && geoCallback[0].type === 'ip'){
+                    var cb = geoCallback.shift();
+                    cb.errCb && cb.errCb(errInfo);
+                }
+            }
+
+        });
+
+        geoLocBoot.init();
+    };
+
+
+
+Geolocation.prototype.executeNextGeo = function(){
+    if(geoStatus !== 1){
+        //如果还有等待的定位继续发起定位流程
+        if(geoCallback.length > 0){
+            geoStatus = 1;
+            geoCallback[0].geoprocess();
+        }
+    }
+}    
+
+/**
+ 获取位置信息
+@method getLocation
+@param (sucCallback, [errCallback], [options: {timeout: number, failTipFlag: boolean}])
+@return null
+**/
+Geolocation.prototype.getLocation = function(sucCallback, errCallback, options) {
+    if(geoCallback.length>10){
+        throw new Error('geolocation queue must be less than 10');
+        return;
+    }
+  
+    /**临时处理timeout的校验，后续统一处理  by sarahlzhang */
+    if(options && options.timeout) {
+        var reg = new RegExp("^[0-9]*$");
+        if(!reg.test(options.timeout)){
+            alert('timeout 请输入数字');
+            return;
+        }
+    }
+
+    geoCallback.push({
+        sucCb: sucCallback,
+        errCb : errCallback,
+        option :options,
+        geoprocess : this.getOnceLocation,
+        type : 'geo'
+    });
+
+    if(geoStatus !== 1){
+        geoStatus = 1;
+        this.getOnceLocation();
+    }
+};
+
+Geolocation.prototype.getOnceLocation =function(){
+    var options = geoCallback[0] && geoCallback[0].option;
+    timeStart = new Date().getTime();
+    timeout = (options && options.timeout) ? +options.timeout : 10000; // 超时时间，10s为推荐值，可根据需求更改，不建议太短
+
+    // window.cacheType = (options && !options.cache) ? + options.cache : true; //默认打开cache
+    if(!options || typeof options.cache === 'undefined') {
+        window.cacheType = true;
+    }else if(options  && options.cache == false){
+        window.cacheType = false;
+    }
+
+    clearTimeout(_timer);
+    _timer = setTimeout(function() {
+        var errInfo = {
+                        type: 'fail',
+                        code: 5,
+                        message: 'The request to get api timeout'
+                    }
+        if(geoCallback.length>0){
+            var cb = geoCallback.shift();
+            cb.errCb&&cb.errCb(errInfo);
+        }
+    }, timeout);
+
+    geoLocBoot._geobind('getLocation');
+};
+
+/**
+获取粗糙定位信息
+@method getIpLocation
+@param (sucCallback, [errCallback])
+@return null
+**/
+Geolocation.prototype.getIpLocation = function(sucCallback, errCallback) {
+    if(geoCallback.length>10){
+        throw new Error('geolocation queue must be less than 10');
+        return;
+    }
+
+    geoCallback.push({
+        sucCb: sucCallback,
+        errCb : errCallback,
+        geoprocess : this.getOnceIpLocation,
+        type : 'ip'
+    });
+    
+    if(geoStatus !== 1){
+        geoStatus = 1;
+        this.getOnceIpLocation();
+    }
+
+};
+
+Geolocation.prototype.getOnceIpLocation = function(){
+    geoLocBoot._geobind('getLocation.robust');
+};
+
+/**
+开始监听位置信息的改变
+@method watchLocation
+@param (sucCallback)
+@return null
+**/
+Geolocation.prototype.watchPosition = function(sucCallback) {
+    watchCallback = sucCallback;
+    geoLocBoot._geobind('watchPosition');
+    // 主动与前端定位组件通信（可选），监听位置信息的改变
+};
+
+/**
+清除监听
+@method clearWatch
+@param null
+@return null
+**/
+Geolocation.prototype.clearWatch = function() {
+    // 主动与前端定位组件通信（可选），清除监听
+    watchCallback = null;
+    geoLocBoot._geobind('clearWatch');
+};
+    
+//     return Geolocation;
+// })();
+
+// var define = this.define;
+
+var geoLocBoot = require('geolocation:static/js/loc_boot');
+
+window._prStat = require('geolocation:static/js/util/stat');
+
+window._prStat.init({
+    appId: 'mc_geolocation',
+    statService: '//pr.map.qq.com/pingd',
+    from: window.wReferer
+});
+
+
+   return Geolocation;
+})();
+
+function loadScript(url) {
+    //创建script标签
+    //var script = document.createElement("script");
+    var scr = document.createElement('SCRIPT');
+        scr.setAttribute('type', 'text/javascript');
+        scr.setAttribute('charset', 'utf-8');
+        scr.setAttribute('src', url);
+        document.getElementsByTagName('head')[0].appendChild(scr);
+}
+}();
+
